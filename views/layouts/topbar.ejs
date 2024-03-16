@@ -1,0 +1,471 @@
+<div class="navbar-custom" style="border-bottom: 3px solid #ebebeb !important">
+    <ul class="list-unstyled topnav-menu float-end mb-0">
+        <style>
+            .topBarDivided {
+                display: flex;
+                height: 70px;
+                align-items: center;
+                border: 1px solid #c5c5c5;
+            }
+
+            @media (max-width:600px) {
+                .topMenueNone {
+                    display: none;
+                }
+            }
+        </style>
+
+
+        <!-- topbar css -->
+        <style>
+            .lg-sidebar-enable .content-page {
+                margin-left: 0px;
+            }
+
+            .lg-sidebar-enable .left-side-menu {
+                width: 0px;
+            }
+
+            .lg-sidebar-enable .footer {
+                left: 0;
+            }
+
+            .lg-sidebar-enable .logo span.logo-sm {
+                display: block;
+            }
+
+            .lg-sidebar-enable .logo span.logo-lg {
+                display: none;
+            }
+
+            .lg-sidebar-enable .logo-box {
+                width: 70px;
+            }
+        </style>
+
+
+        <li class="d-none d-lg-block">
+            <form class="app-search">
+                <div class="app-search-box">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="top-search" style="margin-top: 0px;" />
+                        <!-- <button class="btn input-group-text" type="submit" style="background-color: #fcfcfc;"> -->
+                        <button class="btn input-group-text" type="submit" style="background-color: none;">
+                            <i class="fe-search"></i>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu dropdown-lg" id="search-dropdown">
+                        <!-- item-->
+                        <div class="dropdown-header noti-title">
+                            <h5 class="text-overflow mb-2">Found 22 results</h5>
+                        </div>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="fe-home me-1"></i>
+                            <span>Analytics Report</span>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="fe-aperture me-1"></i>
+                            <span>How can I help you?</span>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <i class="fe-settings me-1"></i>
+                            <span>User profile settings</span>
+                        </a>
+
+                        <!-- item-->
+                        <div class="dropdown-header noti-title">
+                            <h6 class="text-overflow mb-2 text-uppercase">Users</h6>
+                        </div>
+
+                        <div class="notification-list">
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <div class="d-flex align-items-start">
+                                    <img class="d-flex me-2 rounded-circle" src="/assets/images/users/user-1.jpg" alt="Generic placeholder image" height="32" />
+                                    <div class="w-100">
+                                        <h5 class="m-0 font-14">Erwin E. Brown</h5>
+                                        <span class="font-12 mb-0">UI Designer</span>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <div class="d-flex align-items-start">
+                                    <img class="d-flex me-2 rounded-circle" src="/assets/images/users/user-5.jpg" alt="Generic placeholder image" height="32" />
+                                    <div class="w-100">
+                                        <h5 class="m-0 font-14">Jacob Deo</h5>
+                                        <span class="font-12 mb-0">Developer</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </li>
+        <li class="dropdown notification-list topbar-dropdown topMenueNone">
+            <a class="nav-link dropdown-toggle waves-effect waves-light ps-0" data-bs-toggle="dropdown" href="index.html#" role="button" aria-haspopup="false" aria-expanded="false">
+                <i class="mdi mdi-plus" style="border: 1px solid #b3b3b3;border-radius: 5px;padding: 2px 4px;font-size: 25px;"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end ">
+
+                <div class="noti-scroll" data-simplebar>
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                        POS Sale
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        Add New Sale
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        Add Purchase
+                    </a>
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        Add Adjustment
+                    </a>
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        Add Expense
+                    </a>
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        Warehouse
+                    </a>
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        Add User
+                    </a>
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        Add Supplier
+                    </a>
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        Add Customer
+                    </a>
+
+                </div>
+
+
+            </div>
+        </li>
+
+
+
+        <li class="dropdown d-inline-block d-lg-none">
+            <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-bs-toggle="dropdown" href="index.html#" role="button" aria-haspopup="false" aria-expanded="false">
+                <i class="fe-search noti-icon"></i>
+            </a>
+            <div class="dropdown-menu dropdown-lg dropdown-menu-end p-0">
+                <form class="p-3">
+                    <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username" />
+                </form>
+            </div>
+        </li>
+
+        <li class="topBarDivided topMenueNone"></li>
+
+        <li class="dropdown notification-list topbar-dropdown ">
+            <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="index.html#" role="button" aria-haspopup="false" aria-expanded="false">
+                <i class="fe-bell noti-icon"></i>
+                <span class="badge bg-danger rounded-circle noti-icon-badge">9</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end dropdown-lg">
+                <!-- item-->
+                <div class="dropdown-item noti-title">
+                    <h5 class="m-0">
+                        <span class="float-end">
+                            <a href="index.html" class="text-dark">
+                                <small>Clear All</small>
+                            </a> </span>Notification 2
+                    </h5>
+                </div>
+
+                <div class="noti-scroll" data-simplebar>
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                        <div class="notify-icon">
+                            <img src="/assets/images/users/user-1.jpg" class="img-fluid rounded-circle" alt="" />
+                        </div>
+                        <p class="notify-details">Cristina Pride</p>
+                        <p class="text-muted mb-0 user-msg">
+                            <small>Hi, How are you? What about our next meeting</small>
+                        </p>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <div class="notify-icon bg-primary">
+                            <i class="mdi mdi-comment-account-outline"></i>
+                        </div>
+                        <p class="notify-details">
+                            Caleb Flakelar commented on Admin
+                            <small class="text-muted">1 min ago</small>
+                        </p>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <div class="notify-icon">
+                            <img src="/assets/images/users/user-4.jpg" class="img-fluid rounded-circle" alt="" />
+                        </div>
+                        <p class="notify-details">Karen Robinson</p>
+                        <p class="text-muted mb-0 user-msg">
+                            <small>Wow ! this admin looks good and awesome design</small>
+                        </p>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <div class="notify-icon bg-warning">
+                            <i class="mdi mdi-account-plus"></i>
+                        </div>
+                        <p class="notify-details">
+                            New user registered.
+                            <small class="text-muted">5 hours ago</small>
+                        </p>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <div class="notify-icon bg-info">
+                            <i class="mdi mdi-comment-account-outline"></i>
+                        </div>
+                        <p class="notify-details">
+                            Caleb Flakelar commented on Admin
+                            <small class="text-muted">4 days ago</small>
+                        </p>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <div class="notify-icon bg-secondary">
+                            <i class="mdi mdi-heart"></i>
+                        </div>
+                        <p class="notify-details">
+                            Carlos Crouch liked
+                            <b>Admin</b>
+                            <small class="text-muted">13 days ago</small>
+                        </p>
+                    </a>
+                </div>
+
+                <!-- All-->
+                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                    View all
+                    <i class="fe-arrow-right"></i>
+                </a>
+            </div>
+        </li>
+        <li class="dropdown notification-list topbar-dropdown topMenueNone">
+            <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="index.html#" role="button" aria-haspopup="false" aria-expanded="false">
+                <i class="mdi mdi-email-outline" style="font-size: 25px;"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end dropdown-lg">
+                <!-- item-->
+                <div class="dropdown-item noti-title">
+                    <h5 class="m-0">
+                        <span class="float-end">
+                            <a href="index.html" class="text-dark">
+                                <small>Clear All</small>
+                            </a> </span>Email
+                    </h5>
+                </div>
+
+                <div class="noti-scroll" data-simplebar>
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                        <div class="notify-icon">
+                            <img src="/assets/images/users/user-1.jpg" class="img-fluid rounded-circle" alt="" />
+                        </div>
+                        <p class="notify-details">Cristina Pride</p>
+                        <p class="text-muted mb-0 user-msg">
+                            <small>Hi, How are you? What about our next meeting</small>
+                        </p>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <div class="notify-icon bg-primary">
+                            <i class="mdi mdi-comment-account-outline"></i>
+                        </div>
+                        <p class="notify-details">
+                            Caleb Flakelar commented on Admin
+                            <small class="text-muted">1 min ago</small>
+                        </p>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <div class="notify-icon">
+                            <img src="/assets/images/users/user-4.jpg" class="img-fluid rounded-circle" alt="" />
+                        </div>
+                        <p class="notify-details">Karen Robinson</p>
+                        <p class="text-muted mb-0 user-msg">
+                            <small>Wow ! this admin looks good and awesome design</small>
+                        </p>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <div class="notify-icon bg-warning">
+                            <i class="mdi mdi-account-plus"></i>
+                        </div>
+                        <p class="notify-details">
+                            New user registered.
+                            <small class="text-muted">5 hours ago</small>
+                        </p>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <div class="notify-icon bg-info">
+                            <i class="mdi mdi-comment-account-outline"></i>
+                        </div>
+                        <p class="notify-details">
+                            Caleb Flakelar commented on Admin
+                            <small class="text-muted">4 days ago</small>
+                        </p>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <div class="notify-icon bg-secondary">
+                            <i class="mdi mdi-heart"></i>
+                        </div>
+                        <p class="notify-details">
+                            Carlos Crouch liked
+                            <b>Admin</b>
+                            <small class="text-muted">13 days ago</small>
+                        </p>
+                    </a>
+                </div>
+
+                <!-- All-->
+                <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
+                    View all
+                    <i class="fe-arrow-right"></i>
+                </a>
+            </div>
+        </li>
+        <li class="dropdown notification-list topbar-dropdown topMenueNone">
+            <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="index.html#" role="button" aria-haspopup="false" aria-expanded="false">
+                <svg _ngcontent-ng-c310040899="" xmlns="http://www.w3.org/2000/svg" width="17.637" height="17.637" viewBox="0 0 17.637 17.637">
+                    <path _ngcontent-ng-c310040899="" id="world-wide-web"
+                        d="M17.148,11.72a8.82,8.82,0,0,0,0-5.8.635.635,0,0,0-.028-.08,8.819,8.819,0,0,0-16.6,0,.626.626,0,0,0-.028.08,8.82,8.82,0,0,0,0,5.8.635.635,0,0,0,.028.08,8.819,8.819,0,0,0,16.6,0A.63.63,0,0,0,17.148,11.72ZM8.82,16.373c-.336,0-.877-.608-1.33-1.966a13.844,13.844,0,0,1-.521-2.228h3.7a13.855,13.855,0,0,1-.521,2.228C9.7,15.765,9.156,16.373,8.82,16.373Zm-2-5.458c-.061-.674-.093-1.377-.093-2.1s.032-1.423.093-2.1h4.008c.061.674.093,1.377.093,2.1s-.032,1.423-.093,2.1Zm-5.55-2.1a7.533,7.533,0,0,1,.3-2.1H5.549c-.059.688-.089,1.393-.089,2.1s.03,1.409.089,2.1H1.562A7.533,7.533,0,0,1,1.266,8.819ZM8.82,1.264c.336,0,.877.608,1.33,1.966a13.845,13.845,0,0,1,.521,2.228H6.97A13.843,13.843,0,0,1,7.49,3.23C7.943,1.872,8.485,1.264,8.82,1.264Zm3.272,5.458h3.986a7.567,7.567,0,0,1,0,4.194H12.092c.059-.688.089-1.393.089-2.1S12.151,7.41,12.092,6.722Zm3.492-1.264H11.947A12.132,12.132,0,0,0,10.8,1.527,7.587,7.587,0,0,1,15.584,5.458ZM6.845,1.527A12.132,12.132,0,0,0,5.694,5.458H2.056A7.588,7.588,0,0,1,6.845,1.527ZM2.056,12.179H5.694A12.133,12.133,0,0,0,6.845,16.11,7.587,7.587,0,0,1,2.056,12.179ZM10.8,16.11a12.132,12.132,0,0,0,1.152-3.931h3.637A7.587,7.587,0,0,1,10.8,16.11Z"
+                        transform="translate(-0.002)" fill="#616161"></path>
+                </svg>
+                <span class="px-1">Eng</span>
+                <i class="mdi mdi-chevron-down"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end ">
+
+                <div class="noti-scroll" data-simplebar>
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                        Bangla
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        English
+                    </a>
+
+
+
+
+                </div>
+
+
+            </div>
+        </li>
+
+        <li class="topBarDivided topMenueNone " style=""></li>
+
+        <li class="dropdown notification-list topbar-dropdown">
+            <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="index.html#" role="button" aria-haspopup="false" aria-expanded="false">
+                <img src="../../assets/images/icon2/Affialiate.png" alt="user-image" class="rounded-circle" />
+                <span class="pro-user-name ms-1">
+                    Super Admin <i class="mdi mdi-chevron-down"></i>
+                </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end profile-dropdown">
+                <!-- item-->
+                <div class="dropdown-header noti-title">
+                    <h6 class="text-overflow m-0">Welcome !</h6>
+                </div>
+
+                <!-- item-->
+                <a href="contacts-profile.html" class="dropdown-item notify-item">
+                    <i class="fe-user"></i>
+                    <span>My Account</span>
+                </a>
+
+                <!-- item-->
+                <a href="auth-lock-screen.html" class="dropdown-item notify-item">
+                    <i class="fe-lock"></i>
+                    <span>Lock Screen</span>
+                </a>
+
+                <div class="dropdown-divider"></div>
+
+                <!-- item-->
+                <a href="/login" class="dropdown-item notify-item">
+                    <i class="fe-log-out"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </li>
+
+        <li class="dropdown notification-list">
+            <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
+                <i class="fe-settings noti-icon"></i>
+            </a>
+        </li>
+    </ul>
+
+    <!-- LOGO -->
+    <div class="logo-box" style="border-right: 5px solid #ebebeb !important">
+        <a href="/" class="logo logo-light text-center">
+            <span class="logo-sm">
+                <img src="../../assets/images/icon2/Affialiate.png" alt="" height="40" />
+            </span>
+            <span class="logo-lg">
+                <img src="../../assets/images/icon2/Affialiate.png" alt="" height="40" />
+            </span>
+        </a>
+        <a href="/" class="logo logo-dark text-center">
+            <span class="logo-sm">
+                <img src="../../assets/images/icon2/Affialiate.png" alt="" height="40" />
+            </span>
+            <span class="logo-lg">
+                <img src="../../assets/images/icon2/Affialiate.png" alt="" height="40" />
+            </span>
+        </a>
+    </div>
+
+    <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
+        <li>
+            <button class="button-menu-mobile disable-btn waves-effect">
+                <i class="fe-menu"></i>
+            </button>
+        </li>
+
+        <li>
+            <h4 class="page-title-main" style="padding-left: 0px;">
+                <button class="lg-button-menu-mobile  waves-effect" style="border: none; font-size: 24px;">
+                    <i class="fe-menu"></i>
+                </button>
+            </h4>
+        </li>
+    </ul>
+
+    <div class="clearfix"></div>
+</div>

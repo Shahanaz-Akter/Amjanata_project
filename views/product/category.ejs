@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>Product Category</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App css -->
+
+    <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
+
+    <!-- icons -->
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+    <!-- Plugins css -->
+    <link href="/assets/libs/mohithg-switchery/switchery.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/libs/multiselect/css/multi-select.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+    <!-- App css -->
+
+    <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
+
+    <!-- icons -->
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- data tables css -->
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css">
+
+    <style>
+        .content_dropdown-menu {
+            max-height: 300px;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+
+<!-- body start -->
+
+<body class="loading" data-layout-color="light" data-layout-mode="default" data-layout-size="fluid" data-topbar-color="light" data-leftbar-position="fixed" data-leftbar-color="light" data-leftbar-size='default' data-sidebar-user='true'>
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <!-- Top bar Start -->
+        <%- include('../layouts/topbar.ejs') -%>
+
+            <!-- end Topbar -->
+
+            <!-- Left Sidebar Start ========== -->
+            <%- include('../layouts/left_sidebar.ejs') -%>
+
+                <!-- Left Sidebar End -->
+
+
+                <!-- Start Page Content here -->
+                <div class="content-page mt-5" style="background: #F9F9F9;">
+
+                    <div class="content">
+
+
+                        <div class="bg-white p-3 mb-2" style="border-radius: 5px;">
+                            <h4 class="text-black font-bold mb-3">Category</h4>
+                            <div style="color: rgb(97 97 97); margin-right: 0.5rem">
+                                <span>Product</span>
+                                <span>></span>
+                                <span>Category</span>
+                            </div>
+                        </div>
+
+                        <!-- Start Content-->
+                        <div class="container-fluid card p-4" style="padding: 20px;">
+
+                            <div class="d-flex justify-content-between">
+                                <div class="mb-3">
+                                    <h3 class="mb-0">Products Category</h3>
+                                </div>
+
+                                <div data-bs-toggle="modal" data-bs-target="#category" class="">
+                                    <span style="background:black; color:white; border:1px solid grey;border-radius: 0px; padding: 10px 15px;">
+                                        <!-- <svg class="white-svg" xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
+                                            <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+                                        </svg> -->
+                                        <i class="fas fa-plus"></i>
+                                        Add Category
+                                    </span>
+                                </div>
+
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="category" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Category</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form method="post" action="/product/post_category" enctype="multipart/form-data">
+                                            <div class="modal-body">
+                                                <div class="row">
+
+                                                    <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+                                                        <div class="main-img-container mt-2">
+                                                            <img class="" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Not Available"
+                                                                style="width:130px;border-radius:5px;" id="main-img-preview1">
+                                                            <br>
+                                                            <label for="mainImg1" class="btn btn-dark mt-2">Category
+                                                                Image</label>
+                                                            <input type="file" class="d-none" id="mainImg1" onchange="main_image_changed1(this,null)" name="category_image">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+                                                        <div class="form-group" style="background-color: white; border-radius: 5px; padding:10px">
+                                                            <label>UPC code</label>
+                                                            <input readonly type="text" class="form-control" value="<%=upc_code%>" name="upc_code" onkeypress="return event.keyCode != 13;">
+                                                        </div>
+                                                    </div>
+
+                                                    <script>
+
+                                                        let count = 0;
+                                                        //image category
+                                                        const main_image_changed1 = (tag, ind) => {
+                                                            let imgTag;
+                                                            console.log(imgTag, ind);
+
+                                                            if (ind) {
+                                                                imgTag = document.getElementById(`main-img-preview1_${ind}`);
+                                                            } else {
+                                                                imgTag = document.getElementById(`main-img-preview1`);
+                                                            }
+                                                            // imgTag.classList.remove("d-none");
+                                                            if (tag.files && tag.files[0]) {
+                                                                var reader = new FileReader();
+                                                                reader.onload = function (e) {
+                                                                    imgTag.setAttribute("src", e.target.result);
+                                                                };
+                                                                reader.readAsDataURL(tag.files[0]);
+                                                            }
+
+                                                        };
+
+                                                    </script>
+
+                                                    <!-- previous code -->
+                                                    <!-- <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+                                                        <div class="form-group" style="background-color: white; border-radius: 5px; padding:10px">
+                                                            <label>Parent Category</label>
+                                                            <input type="text" class="form-control" value="" name="parent_category" onkeypress="return event.keyCode != 13;">
+                                                        </div>
+                                                    </div> -->
+
+                                                    <div class="col-12 col-md-12 col-lg-12 col-xl-12 mb-2">
+                                                        <div class="form-group  position-relative" style="background-color: white; border-radius: 5px; padding:10px">
+                                                            <label class="" style="">Parent Category</label>
+                                                            <div class=" position-relative single-contact-info productName" style="margin-top: 7px">
+                                                                <input type="text" class="form-control " placeholder="Select Type" onclick="showContentDropdown(1000, null)" autocomplete="off" id="contentsTitleInput_1000" name="parent_category" onkeypress="return event.keyCode != 13;">
+                                                                <div class="content_dropdown-menu d-none w-100 border-0 dropdownMenu_ dropdownBox" id="dropdownMenu_1000" style="margin-left: 0px;box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);border:1px solid gray;">
+                                                                    <% parent.forEach(pa=>{%>
+
+                                                                        <div class="content_dropdown-item p-2 parent" onclick="selectOption(this, null)">
+                                                                            <%=pa.parent_category%>
+                                                                        </div>
+                                                                        <%});%>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    <div class="col-12 col-md-12 col-lg-12 col-xl-12 mb-2">
+                                                        <div class="form-group  position-relative" style="background-color: white; border-radius: 5px; padding:10px">
+                                                            <label class="" style="">Sub Category</label>
+                                                            <div class=" position-relative single-contact-info productName" style="margin-top: 7px">
+                                                                <input type="text" class="form-control " placeholder="Select Type" onclick="showContentDropdown(1002, null)" autocomplete="off" id="contentsTitleInput_1002" name="sub_category" onkeypress="return event.keyCode != 13;">
+                                                                <div class="content_dropdown-menu d-none w-100 border-0 dropdownMenu_ dropdownBox" id="dropdownMenu_1002" style="margin-left: 0px;box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);border:1px solid gray;">
+                                                                    <% parent.forEach(p=>{p.subcategories.forEach(sub=>{%>
+                                                                        <div class="content_dropdown-item p-2" onclick="selectOption(this, null)">
+                                                                            <%=sub.sub_category%>
+                                                                        </div>
+                                                                        <% }) }) %>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-12 col-lg-12 col-xl-12 mb-2">
+                                                        <div class="form-group  position-relative" style="background-color: white; border-radius: 5px; padding:10px">
+                                                            <label class="" style="">Category</label>
+                                                            <div class=" position-relative single-contact-info productName" style="margin-top: 7px">
+                                                                <input type="text" class="form-control " placeholder="Select Type" onclick="showContentDropdown(1003, null)" autocomplete="off" id="contentsTitleInput_1003" name="category" onkeypress="return event.keyCode != 13;">
+
+                                                                <div class="content_dropdown-menu d-none w-100 border-0 dropdownMenu_ dropdownBox" id="dropdownMenu_1003" style="margin-left: 0px;box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);border:1px solid gray;">
+                                                                    <% parent.forEach(p=>{p.subcategories.forEach(sub=>{sub.categories.forEach(ca=>{%>
+
+                                                                        <div class="content_dropdown-item p-2" onclick="selectOption(this, null)">
+                                                                            <%=ca.category%>
+                                                                        </div>
+
+                                                                        <!-- <div class="content_dropdown-item p-2" onclick="selectOption(this, null)">Womens and Girls Fashion</div>
+                                                                                                                                                                                    <div class="content_dropdown-item p-2" onclick="selectOption(this, null)">Home and Gadgets</div>
+                                                                                                                                                                                    <div class="content_dropdown-item p-2" onclick="selectOption(this, null)">Kitchen & Dining</div>
+                                                                                                                                                                                    <div class="content_dropdown-item p-2" onclick="selectOption(this, null)">Health & Beauty</div>
+                                                                                                                                                                                    <div class="content_dropdown-item p-2" onclick="selectOption(this, null)">Baby & Kids</div>
+                                                                                                                                                                                    <div class="content_dropdown-item p-2" onclick="selectOption(this, null)">Shaver & Trimmer</div>
+                                                                                                                                                                                    <div class="content_dropdown-item p-2" onclick="selectOption(this, null)">Electronics</div> -->
+                                                                        <% }) }) })%>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <script>
+                                                        let findInput = 0;
+                                                        let oldDropdownContent = '';
+
+                                                        const showContentDropdown = (id, num) => {
+                                                            let dropdownMenu_s;
+                                                            if (num) {
+                                                                dropdownMenu_s = document.getElementById(`dropdownMenu_${id}_${num}`);
+                                                            }
+                                                            else {
+                                                                dropdownMenu_s = document.getElementById(`dropdownMenu_${id}`);
+                                                            }
+                                                            if (oldDropdownContent && !oldDropdownContent.classList.contains('d-none') && findInput != id) {
+                                                                oldDropdownContent.classList.add('d-none')
+                                                            }
+                                                            dropdownMenu_s.classList.toggle("d-none");
+                                                            findInput = id;
+                                                            oldDropdownContent = dropdownMenu_s
+                                                        };
+
+                                                        document.addEventListener("click", function (event) {
+                                                            var target = event.target
+                                                            let dropdownBox = document.querySelectorAll(".dropdownBox");
+                                                            if (target.tagName != 'INPUT') {
+                                                                for (let i = 0; i < dropdownBox.length; i++) {
+                                                                    if (!dropdownBox[i].classList.contains('d-none')) {
+                                                                        dropdownBox[i].classList.add("d-none");
+                                                                    }
+                                                                }
+                                                            }
+                                                        })
+
+                                                        let allInputTags = document.querySelectorAll('input');
+
+                                                        $(allInputTags).each(function (index, element) {
+                                                            element.addEventListener("input", function (e) {
+                                                                let dropdownBox = document.querySelectorAll(".dropdownBox");
+                                                                for (let i = 0; i < dropdownBox.length; i++) {
+                                                                    console.log("dropdownBox[i]", dropdownBox[i]);
+                                                                    if (!dropdownBox[i].classList.contains('d-none')) {
+                                                                        dropdownBox[i].classList.add("d-none");
+                                                                    }
+                                                                }
+                                                            })
+                                                        })
+
+
+                                                        function selectOption(tag, num) {
+                                                            console.log(tag.innerText);
+                                                            let textInput;
+                                                            if (num) {
+                                                                textInput = document.getElementById(`contentsTitleInput_${findInput}_${num}`);
+                                                            }
+                                                            else {
+                                                                textInput = document.getElementById(`contentsTitleInput_${findInput}`);
+                                                            }
+                                                            let text = tag.innerText;
+                                                            // console.log(text);
+                                                            textInput.value = text;
+
+                                                            let parent = tag.parentNode;
+                                                            parent.classList.add("d-none");
+
+                                                            let tagInnerText = tag.innerText.trim();
+                                                            // console.log(tagInnerText);
+
+                                                            let sku = document.querySelector('#sku');
+                                                            let upc = document.querySelector('#upc');
+
+                                                            // if(tag.classList.contains('parent'))
+
+                                                            axios.post('/product/get_category', { tagInnerText })
+                                                                .then(response => {
+                                                                    console.log('hhh');
+                                                                    console.log(response.data);
+                                                                    if (response.data.success) {
+                                                                        upc.value = response.data.u_code;
+                                                                        let timestamp = Date.now().toString();
+                                                                        sku.value = response.data.u_code + timestamp;
+                                                                    }
+                                                                })
+                                                                .catch(error => {
+                                                                    console.error('Error:', error);
+                                                                });
+
+
+                                                        }
+
+                                                    </script>
+
+                                                    <!-- <div class="col-12 col-md-12 col-lg-12 col-xl-12 mb-2 wrapper1">
+                                                        <div class="form-group" style="background-color: white; border-radius: 5px; padding:10px">
+                                                            <label>Sub Category</label>
+                                                            <input type="text" class="form-control" value="" name="sub_category" onkeypress="return event.keyCode != 13;">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-md-12 col-lg-12 col-xl-12 mb-2 wrapper1">
+                                                        <div class="form-group" style="background-color: white; border-radius: 5px; padding:10px">
+                                                            <label>Category</label>
+                                                            <input type="text" class="form-control" value="" name="category" onkeypress="return event.keyCode != 13;">
+                                                        </div>
+                                                    </div> -->
+
+                                                </div>
+                                            </div>
+                                            <style>
+                                                .modal-footer {
+                                                    justify-content: flex-start;
+                                                }
+                                            </style>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                                <form action="" method="post" class="mb-5">
+
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3">
+                                            <label for="category" class="form-label">Category</label>
+                                            <input class="form-control" id="date" type="text" name="category">
+                                        </div>
+
+
+                                        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3">
+                                            <label for="category" class="form-label"> Category</label>
+                                            <select class="form-control" data-toggle="select2" data-width="100%" name="category" style="background: #FCFCFC!important;">
+                                                <optgroup label="">
+                                                    <option value="">United State</option>
+                                                    <option value="">Canada</option>
+                                                    <option value="">Maxico</option>
+                                                    <option value="">France</option>
+                                                    <option value="">Germany</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3">
+                                            <label for="sub_category" class="form-label">Sub Category</label>
+                                            <select class="form-control" data-toggle="select2" data-width="100%" name="sub_category" style="background: #FCFCFC!important;">
+                                                <optgroup label="">
+                                                    <option value="">United State</option>
+                                                    <option value="">Canada</option>
+                                                    <option value="">Maxico</option>
+                                                    <option value="">France</option>
+                                                    <option value="">Germany</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                        <style>
+                                            .select2-container--default .select2-selection--single {
+                                                background: #FCFCFC !important;
+                                                color: #444 !important;
+                                            }
+
+                                            .form-control {
+                                                /* background: #FCFCFC !important; */
+                                                color: #444 !important;
+                                            }
+                                        </style>
+                                        <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                                            <button type="submit" class="btn btn-primary float-end">Create Category</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div> -->
+
+                                <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+
+                                    <style>
+                                        #product_category_wrapper {
+                                            background-color: white;
+                                            padding: 20px;
+                                            border-radius: 5px;
+                                        }
+
+                                        .dataTables_scrollHeadInner thead tr th {
+                                            text-align: center;
+                                        }
+
+                                        #product_category tr td {
+                                            text-align: center;
+                                        }
+                                    </style>
+
+                                    <table id="product_category" class="display nowrap h-100" style="width:100%">
+
+                                        <thead>
+                                            <tr>
+                                                <th><input type="checkbox" id="select-all-checkbox" onclick="selectAll()"></th>
+                                                <!-- <th>Id</th> -->
+                                                <th>Category Image</th>
+                                                <th>Parent Category</th>
+                                                <th>Sub Category</th>
+                                                <th>Category</th>
+                                                <th>UPC Code</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                            <%records.forEach(records=>{%>
+                                                <tr>
+                                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                                    <!-- <td>
+                                                        <%=records.id%>
+                                                    </td> -->
+                                                    <td>
+
+                                                        <%if(records.parent_category.category_image){%>
+                                                            <div class="" style="background: url('<%=records.parent_category.category_image%>');background-size:cover;background-repeat: no-repeat;background-position:center center; height: 150px;width:150px;">
+                                                            </div>
+                                                            <%}else{%>
+                                                                <div>Null</div>
+                                                                <%}%>
+
+                                                    </td>
+
+                                                    <td>
+                                                        <%=records.parent_category.parent_category?records.parent_category.parent_category: 'Null' %>
+                                                    </td>
+
+                                                    <!-- records record1 record2 -->
+
+                                                    <td>
+                                                        <%=records.sub_category.sub_category?records.sub_category.sub_category: 'Null' %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%=records.category?records.category: 'Null' %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%=records.parent_category.upc_code%>
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn-group mb-2">
+                                                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                Add <i class="mdi mdi-chevron-down"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+
+                                                                <a class="dropdown-item" href="/product/add_product/<%=records._id%>">
+
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
+                                                                        <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+                                                                    </svg>
+                                                                    <span class="ms-1">Add Product</span>
+                                                                </a>
+
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <%});%>
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- container-fluid -->
+
+                    </div> <!-- content -->
+
+                    <!-- Footer Start -->
+                    <%- include('../layouts/footer.ejs') -%>
+
+                        <!-- end Footer -->
+
+                </div>
+                <!-- End Page content -->
+
+
+    </div>
+    <!-- END wrapper -->
+
+    <!-- Right Sidebar -->
+    <%- include('../layouts/right_sidebar') -%>
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- Vendor -->
+        <script src="/assets/libs/jquery/jquery.min.js"></script>
+        <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="/assets/libs/node-waves/waves.min.js"></script>
+        <script src="/assets/libs/waypoints/lib/jquery.waypoints.min.js"></script>
+        <script src="/assets/libs/jquery.counterup/jquery.counterup.min.js"></script>
+        <script src="/assets/libs/feather-icons/feather.min.js"></script>
+
+        <script src="/assets/libs/selectize/js/standalone/selectize.min.js"></script>
+        <script src="/assets/libs/mohithg-switchery/switchery.min.js"></script>
+        <script src="/assets/libs/multiselect/js/jquery.multi-select.js"></script>
+        <script src="/assets/libs/select2/js/select2.min.js"></script>
+        <script src="/assets/libs/jquery-mockjax/jquery.mockjax.min.js"></script>
+        <script src="/assets/libs/devbridge-autocomplete/jquery.autocomplete.min.js"></script>
+        <script src="/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+        <script src="https://coderthemes.com/adminto/layouts//assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+
+        <!-- Init js-->
+        <script src="/assets/js/pages/form-advanced.init.js"></script>
+
+        <!-- App js -->
+        <script src="/assets/js/app.min.js"></script>
+
+
+        <!-- data table js -->
+        <!-- <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+
+    </script> -->
+
+        <script>
+            var table;
+
+            $(document).ready(function () {
+                table = $('#product_category').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'],
+                    scrollX: true,
+                    scrollY: true,
+
+                    // select: {
+                    //     style: 'multi', // Enable multiple row selection
+                    //     selector: 'td input', // Use the first column for selection
+                    // },
+                });
+
+                // $('#select-all-checkbox').on('click', function () {
+                //     var isChecked = $(this).prop('checked');
+                //     $('input.row-checkbox', table.rows().nodes()).prop('checked', isChecked);
+                //     table.rows().select(isChecked);
+                // });
+            });
+        </script>
+
+        <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+        <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
+
+
+
+        <script src="/assets/libs/select2/js/select2.min.js"></script>
+
+        <!-- <script>
+        const selectAll = () => {
+            let select_all = document.querySelector('#select-all-checkbox');
+
+            let one_checkbox = document.querySelector('.row-checkbox');
+            console.log(select_all);
+            select_all.addEventListener(() => {
+                one_checkbox.setAttribute('selected');
+            })
+
+
+        }
+    </script> -->
+
+</body>
+
+</html>
