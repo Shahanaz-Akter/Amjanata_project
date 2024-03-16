@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 let parentCategory = require('../models/parentcategory');
 let subCategory = require('../models/subcategory');
 let Category = require('../models/category');
+let Product = require('../models/product');
 
 const userView = async (req, res) => {
 
@@ -40,8 +41,10 @@ const userView = async (req, res) => {
         }
     ]);
 
+    let products = await Product.find({});
+    // console.log(products);
 
-    res.render('user/index.ejs', { parent });
+    res.render('user/index.ejs', { parent, products });
 }
 const category = async (req, res) => {
 
