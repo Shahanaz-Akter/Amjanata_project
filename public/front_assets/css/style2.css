@@ -1520,17 +1520,18 @@ button {
     }
 
     .f-1 {
-        padding-right: 40px !important;
+        padding-right: 35px !important;
     }
 
     .f-11 {
-        padding-right: 60px !important;
+        padding-right: 45px !important;
     }
 
     .f-2 {
-        padding-right: 135px !important;
+        padding-right: 150px !important;
     }
-    .text_latest{
+
+    .text_latest {
         font-size: 35px;
         text-align: center;
     }

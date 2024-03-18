@@ -563,52 +563,13 @@ const ProductDetails = async (req, res) => {
         let product_id = req.params.id;
         // console.log('product_id: ', product_id);
 
-        let records = await Product.findById(new ObjectId(product_id));
+        let records = await Product.findById(product_id);
+        // console.log(records);
         let reviews = [];
 
         // console.log('records: ', records);
         res.render('product/product_details.ejs', { parent, records, reviews });
 
-    }
-    catch (err) {
-        console.log(err);
-    }
-}
-const cart = async (req, res) => {
-    try {
-        let parent = await parentCategory.aggregate([
-            {
-                $lookup: {
-                    from: 'subcategories',
-                    localField: '_id',
-                    foreignField: 'parent_category_id',
-                    as: 'subcategories'
-                }
-            },
-            {
-                $unwind: "$subcategories" // Unwind the subcategories array
-            },
-            {
-                $lookup: {
-                    from: 'categories',
-                    localField: 'subcategories._id',
-                    foreignField: 'sub_category_id',
-                    as: 'subcategories.categories'
-                }
-            },
-            {
-                $group: {
-                    _id: '$_id',
-                    parent_category: { $first: '$parent_category' },
-                    upc_code: { $first: '$upc_code' },
-                    category_image: { $first: '$category_image' },
-                    createdAt: { $first: '$createdAt' },
-                    __v: { $first: '$__v' },
-                    subcategories: { $push: '$subcategories' } // Push subcategories into an array
-                }
-            }
-        ]);
-        res.render('user/cart.ejs', { parent });
     }
     catch (err) {
         console.log(err);
@@ -652,6 +613,52 @@ const portFolio = async (req, res) => {
     }
 }
 
+const cart = async (req, res) => {
+    try {
+        let parent = await parentCategory.aggregate([
+            {
+                $lookup: {
+                    from: 'subcategories',
+                    localField: '_id',
+                    foreignField: 'parent_category_id',
+                    as: 'subcategories'
+                }
+            },
+            {
+                $unwind: "$subcategories" // Unwind the subcategories array
+            },
+            {
+                $lookup: {
+                    from: 'categories',
+                    localField: 'subcategories._id',
+                    foreignField: 'sub_category_id',
+                    as: 'subcategories.categories'
+                }
+            },
+            {
+                $group: {
+                    _id: '$_id',
+                    parent_category: { $first: '$parent_category' },
+                    upc_code: { $first: '$upc_code' },
+                    category_image: { $first: '$category_image' },
+                    createdAt: { $first: '$createdAt' },
+                    __v: { $first: '$__v' },
+                    subcategories: { $push: '$subcategories' } // Push subcategories into an array
+                }
+            }
+        ]);
+        let product_id = req.params.id;
+        let product = await Product.findById(product_id);
+        console.log(product);
+        res.render('user/cart.ejs', { parent, product });
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+
+
 module.exports = {
-    productList, category, postAddProduct, addProduct, manualAddProduct, postCategory, getCategory, allProduct, all_Produc, ProductDetails, cart, social, hotTrends, checkout, portFolio
+    productList, category, postAddProduct, addProduct, manualAddProduct, postCategory, getCategory, allProduct, all_Produc, ProductDetails, social, hotTrends, checkout, portFolio, cart,
 }
