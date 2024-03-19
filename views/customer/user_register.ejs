@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en" class="light-theme">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--favicon-->
+  <link rel="icon" href="../../front_assets/img/logo.ico" type="image/webp" />
+
+  <!-- CSS files -->
+
+  <link href="../../front_assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+  <!-- Plugins -->
+  <link rel="stylesheet" type="text/css" href="../../front_assets/plugins/slick/slick.css" />
+  <link rel="stylesheet" type="text/css" href="../../front_assets/plugins/slick/slick-theme.css" />
+
+  <link href="../../front_assets/css/style.css" rel="stylesheet">
+  <link href="../../front_assets/css/dark-theme.css" rel="stylesheet">
+
+
+  <title>Amjanata</title>
+  <style>
+    .list {
+      width: 250px !important;
+      font-weight: 500 !important;
+    }
+
+    @media screen and (max-width: 576px) {
+      .size {
+        width: 50%;
+      }
+
+      /* .size1 {
+        width: 40%;
+      } */
+
+      .deals-text {
+        margin-bottom: 85px !important;
+      }
+
+      .deals {
+        height: 200px !important;
+        width: 100%;
+        max-width: 155px;
+      }
+
+      .deal {
+        width: 100px !important;
+        height: 100px !important;
+      }
+
+      /* .deals-img {
+        width: 100%;
+
+      } */
+    }
+  </style>
+</head>
+
+<body class="container-fluid">
+  <!--page loader-->
+  <div class="loader-wrapper d-none">
+    <div class="d-flex justify-content-center align-items-center position-absolute top-50 start-50 translate-middle">
+      <div class="spinner-border text-dark" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+  <!--end loader-->
+
+  <div class="text-center" style="background-color: #8aff5f;">
+    <p>Amjanata</p>
+  </div>
+
+  <!--start top header-->
+  <header class="mb-2 py-5 mx-sm-auto top-header">
+    <nav class="navbar navbar-expand-md w-100 navbar-dark container-lg ">
+      <a class="navbar-brand d-none d-xl-inline" href="/"><img src="../../front_assets/img/logo.png" class="logo-img" alt=""></a>
+      <a class="mobile-menu-btn d-inline d-xl-none" href="javascript:;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+        <i class="bi bi-list"></i>
+      </a>
+      <a class="mobile-menu-btn d-inline d-xl-none" href="javascript:;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+        <img src="../../front_assets/img/logo.png" class="logo-img" alt="">
+      </a>
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
+        <div class="offcanvas-header justify-content-end">
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body primary-menu">
+          <ul class="navbar-nav justify-content-start flex-grow-1 gap-2">
+
+            <div class="nav-item dropdown d-none d-lg-block">
+              <a class="nav-link categories dropdown-toggle dropdown-toggle-nocaret m-2 px-3 py-0 px-5" style="
+              height: 40px; border-radius:5px; font-size:small;font-weight: 600;" href="javascript:;" data-bs-toggle="dropdown">
+                Categories
+                <i class="bi bi-caret-down-fill"></i>
+              </a>
+
+              <ul class="dropdown-menu">
+                <% parent.forEach(p=>{ %>
+                  <li>
+                    <a class="dropdown-item" href="">
+                      <%=p.parent_category%>
+                    </a>
+                  </li>
+                  <%});%>
+              </ul>
+
+            </div>
+
+            <div class="dropdown mx-1 nav-item d-none d-md-block d-lg-none">
+              <a class="categories btn btn-default dropdown-toggle m-2 px-3 py-2 px-5" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: small;padding: 7px 0;">
+                Categories
+              </a>
+              <ul class="dropdown-menu default-menu px-2" aria-labelledby="dropdownMenu1">
+                <% parent.forEach(p=>{ %>
+                  <li>
+                    <a class="dropdown-item" href="/">
+                      <%=p.parent_category%>
+                    </a>
+                  </li>
+                  <%});%>
+              </ul>
+            </div>
+
+            <div class="d-lg-block d-lg-flex d-md-flex d-none d-sm-none mt-2 position-relative search-box w-md-auto" style="width: 70%;">
+              <div class="position-absolute position-absolute start-0 translate-middle ms-4 fs-5" style="top: 21px;"><i class="bi bi-search" style="font-size:medium;"></i></div>
+              <input class="form-control form-control-lg ps-5 rounded-3 categories" style="width: 100%;
+              height: 40px; border-radius:5px; font-size:medium; border-width: 0;;" type="text" placeholder="Search for Products, Brand and More">
+            </div>
+            <!-- <ul class="navbar-nav secondary-menu flex-row">
+              <li class="nav-item ">
+                <a class="nav-link" style="font-size:15px;font-weight: 500;" href="account-dashboard.html"><i
+                    class="bi bi-person-circle me-2"></i>Login <i class="bi bi-caret-down-fill"></i></a>
+              </li>
+              <li class="nav-item " data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
+                <a class="nav-link position-relative" style="font-size:15px;font-weight: 500;" href="javascript:;">
+                  <i class="bi bi-basket2 me-2"></i>
+                  Cart
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" style="font-size:15px;font-weight: 500;" href="account-dashboard.html"><i
+                    class="bi bi-shop-window me-2"></i>Become a Seller</a>
+              </li>
+              
+            </ul> -->
+          </ul>
+        </div>
+
+      </div>
+      <ul class="navbar-nav secondary-menu flex-row">
+
+        <li class="dropdown mx-1 hov nav-item d-none d-md-none d-lg-block nic-1030">
+          <a class="btn btn-default " type="button" id="dropdownMenuLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 15px;padding: 7px 0;"><i class="bi bi-person-circle me-2"></i>Login
+            <i class="fa-solid fa-angle-down submenuicon"> </i>
+          </a>
+
+          <ul class="shadow dropdown-menu list default-menu px-2 text-dark" aria-labelledby="dropdownMenuLogin">
+
+            <li class="my-1 d-flex align-items-center justify-content-between gap-1 text-center">
+              <p style="margin-bottom: 0;">New Customer?</p> <a hreflang="/customer/user_register" class="text-primary" href="/customer/user_register">Sign Up</a>
+            </li>
+            <hr>
+            <li>
+              <p><i class="bi bi-person-circle"></i> My Profile</p>
+            </li>
+            <li>
+              <a href="/customer/user_login">
+                <p>Login</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item d-md-block d-md-flex d-sm-block d-sm-flex d-xl-none d-lg-none ic-1030">
+          <a class="nav-link" style="font-size:25px;font-weight: 500;" href="account-dashboard.html"><i class="bi bi-person-circle me-2"></i></a>
+        </li>
+        <li class="nav-item d-lg-flex d-lg-flex d-md-none d-none d-sm-none nic-1030">
+          <a class="nav-link position-relative" style="font-size:15px;font-weight: 500;" href="/product/cart">
+            <!-- <div class="cart-badge">8</div> -->
+            <i class="bi bi-basket2 me-2"></i>
+            Cart
+          </a>
+        </li>
+        <li class="nav-item d-md-block d-md-flex d-sm-block d-sm-flex d-xl-none d-lg-none ic-1030">
+          <a class="nav-link position-relative" style="font-size:25px;font-weight: 500;" href="javascript:;">
+            <i class="bi bi-basket2 me-2"></i>
+          </a>
+        </li>
+        <li class="nav-item d-lg-block d-lg-flex d-md-none d-none d-sm-none nic-1030">
+          <a class="nav-link" style="font-size:15px;font-weight: 500;" href="account-dashboard.html"><i class="bi bi-shop-window me-2"></i>Become a Seller</a>
+        </li>
+        <!-- <li class="nav-item d-md-block d-md-flex d-sm-block d-sm-flex d-xl-none d-lg-none ic-1030">
+          <a class="nav-link" style="font-size:25px;font-weight: 500;" href="account-dashboard.html"><i
+              class="bi bi-shop-window me-2"></i></a>
+        </li> -->
+
+      </ul>
+
+      <li class="d-lg-none d-md-none d-md-flex d-sm-block d-sm-flex d-xl-none mb-4 mx-auto search w-100 me-1" style="list-style: none;">
+
+        <div class="d-flex align-items-center justify-content-between w-100">
+
+          <div class="dropdown mx-1 nav-item">
+
+            <a class="categories btn btn-default dropdown-toggle px-1" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: small;padding: 7px 0;">
+              Categories
+            </a>
+            <ul class="dropdown-menu default-menu px-2" aria-labelledby="dropdownMenu1">
+              <% parent.forEach(p=>{ %>
+
+                <li><a href="/">
+                    <%=p.parent_category%>
+                  </a></li>
+                <%});%>
+            </ul>
+          </div>
+
+          <form class="categories rounded-3 w-100 d-flex" style="width: 255px;border-radius: 15px;">
+            <button class="rounded-3 categories" type="submit"><i class="fa fa-search text-secondary"></i></button>
+            <input id="smallSearchBar" class="rounded-3 categories fs-6" style="outline: none; border-radius: 15px;" type="text" placeholder="Search for Products, Brand ...." name="search">
+          </form>
+        </div>
+      </li>
+
+      <!-- <ul class="navbar-nav secondary-menu flex-row">
+        <li class="nav-item dropdown" style="list-style: none;">
+          <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" style="font-size:15px;font-weight: 700;" href="javascript:;"
+          data-bs-toggle="dropdown">
+            <i class="bi bi-list"></i></a>
+
+        </li>
+
+      </ul> -->
+    </nav>
+  </header>
+  <!--end top header-->
+  <!--start page content-->
+  <div class="page-content">
+
+
+    <!--start breadcrumb-->
+    <div class="py-4 border-bottom">
+      <div class="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
+            <li class="breadcrumb-item"><a href="javascript:;">Authentication</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Register</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <!--end breadcrumb-->
+
+
+    <!--start product details-->
+    <section class="section-padding">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-12 col-lg-6 col-xl-5 col-xxl-5 mx-auto">
+            <div class="card rounded-0">
+              <div class="card-body p-4">
+                <h4 class="mb-0 fw-bold text-center">Registration</h4>
+                <hr>
+                <p class="mb-2">Join / Sign Up using</p>
+                <div class="social-login mb-4">
+                  <div class="row g-4">
+                    <div class="col-xl-6">
+                      <button type="button" class="btn bg-facebook btn-ecomm w-100 text-white"><i class="bi bi-facebook me-2"></i>Facebook</button>
+                    </div>
+                    <div class="col-xl-6">
+                      <button type="button" class="btn bg-pinterest btn-ecomm w-100 text-white"><i class="bi bi-google me-2"></i>Google</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="separator mb-4">
+                  <div class="line"></div>
+                  <p class="mb-0 fw-bold">Or</p>
+                  <div class="line"></div>
+                </div>
+                <form>
+                  <div class="row g-4">
+                    <div class="col-12">
+                      <label for="exampleName" class="form-label">Name</label>
+                      <input type="text" class="form-control rounded-0" id="exampleName">
+                    </div>
+                    <div class="col-12">
+                      <label for="exampleMobile" class="form-label">Mobile</label>
+                      <input type="text" class="form-control rounded-0" id="exampleMobile">
+                    </div>
+                    <div class="col-12">
+                      <label for="exampleEmail" class="form-label">Email ID</label>
+                      <input type="text" class="form-control rounded-0" id="exampleEmail">
+                    </div>
+                    <div class="col-12">
+                      <label for="examplePassword" class="form-label">Password</label>
+                      <input type="text" class="form-control rounded-0" id="examplePassword">
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          I agree to Terms and Conditions
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <hr class="my-0">
+                    </div>
+                    <div class="col-12">
+                      <button type="button" class="btn btn-dark rounded-0 btn-ecomm w-100">Sign Up</button>
+                    </div>
+                    <div class="col-12 text-center">
+                      <p class="mb-0 rounded-0 w-100">Already have an account? <a href="javascript:;" class="text-danger">Sign In</a></p>
+                    </div>
+                  </div><!---end row-->
+                </form>
+              </div>
+            </div>
+          </div>
+        </div><!--end row-->
+
+      </div>
+    </section>
+    <!--start product details-->
+
+
+  </div>
+  <!--end page content-->
+  <!--start footer-->
+  <section class="footer-section bg-section-2 section-padding container mt-2 ">
+
+    <div class="row">
+
+      <div class="col-12 col-md-4 col-lg-3 col-xl-3" style="border: 0px solid ;">
+        <div class="">
+          <h5 class="mb-3 fw-bold">About Us</h5>
+          <div class="list-unstyled">
+            <li><a href="javascript:;">About Amjanata</a></li>
+            <li><a href="javascript:;">Careers</a></li>
+            <li><a href="javascript:;">News & Blog</a></li>
+            <li><a href="javascript:;">Amjanata Brands</a></li>
+            <li><a href="javascript:;">Bullseye Shop</a></li>
+            <li><a href="javascript:;">Sustainability & Governance</a></li>
+            <li><a href="javascript:;">Press Center</a></li>
+            <li><a href="javascript:;">Advertise with Us</a></li>
+            <li><a href="javascript:;">Investors</a></li>
+            <li><a href="javascript:;">Affiliates & Partners</a></li>
+            <li><a href="javascript:;">Suppliers</a></li>
+            <li><a href="javascript:;">AmjanataPlus</a></li>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-lg-3 col-xl-3" style="border: 0px solid ;">
+        <div class="">
+          <h5 class="mb-3 fw-bold">Help</h5>
+          <ul class="list-unstyled">
+            <li><a href="javascript:;">Amjanata Help</a></li>
+            <li><a href="javascript:;">Returns</a></li>
+            <li><a href="javascript:;">Track Orders</a></li>
+            <li><a href="javascript:;">Recalls</a></li>
+            <li><a href="javascript:;">Contact Us</a></li>
+            <li><a href="javascript:;">Feedback</a></li>
+            <li><a href="javascript:;">Accessibility</a></li>
+            <li><a href="javascript:;">Security & Fraud</a></li>
+            <li><a href="javascript:;">Team Member Services</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-2 col-md-3 col-lg-3 col-xl-3" style="border: 0px solid ;">
+        <div class="">
+          <h5 class="mb-3 fw-bold">Stores</h5>
+          <ul class="list-unstyled">
+            <li>
+              <a href="javascript:;"><img src="../../front_assets/img/icons/amjanata icon-08.svg" alt="" style="width: 20px;"> Location</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4 col-lg-3 col-xl-3" style="border: 0px solid ;">
+        <div class="">
+          <h5 class="mb-3 fw-bold">Services</h5>
+          <ul class="list-unstyled">
+            <li><a href="javascript:;"><img src="../../front_assets/img/icons/amjanata icon-01.svg" alt="" style="width: 20px;"> Amjanata
+                Circle</a></li>
+            <li><a href="javascript:;"><img src="../../front_assets/img/icons/amjanata icon-03.svg" alt="" style="width: 20px;">
+                RedCard</a></li>
+            <li><a href="javascript:;"><img src="../../front_assets/img/icons/amjanata icon-04.svg" alt="" style="width: 20px;"> Amjanata App</a>
+            </li>
+            <li><a href="javascript:;"><img src="../../front_assets/img/icons/amjanata icon-05.svg" alt="" style="width: 20px;">
+                Registry</a></li>
+            <li><a href="javascript:;"><img src="../../front_assets/img/icons/amjanata icon-06.svg" alt="" style="width: 20px;"> Delivery</a></li>
+            <li><a href="javascript:;">
+                <img src="../../front_assets/img/icons/amjanata icon-07.svg" alt="" style="width: 20px;"> Order Pickup</a></li>
+            <li><a href="javascript:;"><img src="../../front_assets/img/icons/amjanata icon-02.svg" alt="" style="width: 20px;"> Free 2-Day
+                Shipping</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!--end row-->
+    </div>
+
+    <div>
+      <a href="/"><img class="d-flex justify-content-center mx-auto my-0" style="width: 200px;" src="../../front_assets/img/logo.png" alt="">
+      </a>
+    </div>
+
+  </section>
+  <!--end footer-->
+
+
+  <!-- real footer -->
+
+
+  <footer class="footer-strip text-center py-4 bg-section-2 bg-dark border-top positon-absolute bottom-0">
+    <p class="mb-0 text-muted">Copyright ©2024 Amjanata. Designed By Ztrios Tech & Marketing</p>
+  </footer>
+
+  <!--start quick view-->
+
+  <!--Start Back To Top Button-->
+  <a href="javaScript:;" class="back-to-top"><i class="bi bi-arrow-up"></i></a>
+  <!--End Back To Top Button-->
+
+
+  <!-- JavaScript files -->
+  <script src="../../front_assets/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  </script>
+  <script src="../../front_assets/js/jquery.min.js"></script>
+  <script src="../../front_assets/plugins/slick/slick.min.js"></script>
+  <script src="../../front_assets/js/main.js"></script>
+  <script src="../../front_assets/js/index.js"></script>
+  <script src="../../front_assets/js/loader.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('.btn-default').on('click', function () {
+        $('.default-menu').slideToggle();
+        $('.dropdown-overlay').show();
+      });
+
+      $('.dropdown-overlay').on('click', function () {
+        $('.default-menu').hide();
+        $(this).hide();
+      });
+      $('.top-category-carousal').slick()
+
+      // Add click event handler to body
+      $('body').on('click', function (event) {
+        // Check if the clicked element is not inside the menu or the button
+        if (!$(event.target).closest('.default-menu').length && !$(event.target).is('.btn-default')) {
+          $('.default-menu').hide();
+          $('.dropdown-overlay').hide();
+        }
+      });
+    });
+  </script>
+
+
+</body>
+
+</html>

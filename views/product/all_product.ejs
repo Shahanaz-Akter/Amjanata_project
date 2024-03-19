@@ -352,11 +352,11 @@
       <ul class="navbar-nav secondary-menu flex-row">
 
         <li class="dropdown mx-1 hov nav-item d-none d-md-none d-lg-block nic-1030">
-          <a class="btn btn-default " type="button" id="dropdownMenuLogin1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 15px;padding: 7px 0;"><i class="bi bi-person-circle me-2"></i>Login
+          <a class="btn btn-default " type="button" id="dropdownMenuLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: 15px;padding: 7px 0;"><i class="bi bi-person-circle me-2"></i>Login
             <i class="fa-solid fa-angle-down submenuicon"> </i>
           </a>
 
-          <ul class="shadow dropdown-menu list default-menu px-2 text-dark" aria-labelledby="dropdownMenuLogin1">
+          <ul class="shadow dropdown-menu list default-menu px-2 text-dark" aria-labelledby="dropdownMenuLogin">
 
             <li class="my-1 d-flex align-items-center justify-content-between gap-1 text-center">
               <p style="margin-bottom: 0;">New Customer?</p> <a class="text-primary" href="">Sign Up</a>
@@ -374,14 +374,14 @@
         <li class="nav-item d-md-block d-md-flex d-sm-block d-sm-flex d-xl-none d-lg-none ic-1030">
           <a class="nav-link" style="font-size:25px;font-weight: 500;" href="account-dashboard.html"><i class="bi bi-person-circle me-2"></i></a>
         </li>
-        <li class="nav-item d-lg-flex d-lg-flex d-md-none d-none d-sm-none nic-1030" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
+        <li class="nav-item d-lg-flex d-lg-flex d-md-none d-none d-sm-none nic-1030">
           <a class="nav-link position-relative" style="font-size:15px;font-weight: 500;" href="/product/cart">
             <!-- <div class="cart-badge">8</div> -->
             <i class="bi bi-basket2 me-2"></i>
             Cart
           </a>
         </li>
-        <li class="nav-item d-md-block d-md-flex d-sm-block d-sm-flex d-xl-none d-lg-none ic-1030" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight">
+        <li class="nav-item d-md-block d-md-flex d-sm-block d-sm-flex d-xl-none d-lg-none ic-1030">
           <a class="nav-link position-relative" style="font-size:25px;font-weight: 500;" href="javascript:;">
             <i class="bi bi-basket2 me-2"></i>
           </a>
@@ -1308,6 +1308,30 @@
       }
     }
 
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      $('.btn-default').on('click', function () {
+        $('.default-menu').slideToggle();
+        $('.dropdown-overlay').show();
+      });
+
+      $('.dropdown-overlay').on('click', function () {
+        $('.default-menu').hide();
+        $(this).hide();
+      });
+      $('.top-category-carousal').slick()
+
+      // Add click event handler to body
+      $('body').on('click', function (event) {
+        // Check if the clicked element is not inside the menu or the button
+        if (!$(event.target).closest('.default-menu').length && !$(event.target).is('.btn-default')) {
+          $('.default-menu').hide();
+          $('.dropdown-overlay').hide();
+        }
+      });
+    });
   </script>
 
 </body>

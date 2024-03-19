@@ -8,6 +8,8 @@ router.get('/', userView);
 router.get('/index', userView);
 router.get('/master', master);
 router.get('/grocery', category);
+router.get('/', userView);
+
 
 
 

@@ -6,6 +6,9 @@ let subCategory = require('../models/subcategory');
 let Category = require('../models/category');
 let Product = require('../models/product');
 
+
+
+
 const userView = async (req, res) => {
 
     let parent = await parentCategory.aggregate([

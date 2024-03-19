@@ -743,10 +743,10 @@
             </div>
 
             <div class="dropdown mx-1 nav-item d-none d-md-block d-lg-none">
-              <a class="categories btn btn-default dropdown-toggle m-2 px-3 py-2 px-5" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: small;padding: 7px 0;">
+              <a class="categories btn btn-default dropdown-toggle m-2 px-3 py-2 px-5" type="button" id="dropdownMenuLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: small;padding: 7px 0;">
                 Categories
               </a>
-              <ul class="dropdown-menu default-menu px-2" aria-labelledby="dropdownMenu1">
+              <ul class="dropdown-menu default-menu px-2" aria-labelledby="dropdownMenuLogin">
                 <% parent.forEach(p=>{ %>
                   <li>
                     <a class="dropdown-item" href="/">
@@ -993,8 +993,8 @@
 
               <div class="cart-buttons mt-3">
                 <div class="buttons d-flex flex-column flex-lg-row gap-3 mt-4">
-                  <a href="/customer/add_customer%>" class="btn btn-lg btn-dark btn-ecomm px-5 py-3 col-lg-6"><i class="bi bi-basket2 me-2"></i>Add to Bag</a>
-                  <a href="javascript:;" class="btn btn-lg btn-warning btn-ecomm px-5 py-3 col-lg-6" data-bs-toggle="offcanvas" data-bs-target="#checkoutModal"><i class="bi bi-basket2 me-2"></i>Buy Now</a>
+                  <a href="/customer/user_login" class="btn btn-lg btn-dark btn-ecomm px-5 py-3 col-lg-6"><i class="bi bi-basket2 me-2"></i>Add to Bag</a>
+                  <a href="/customer/user_register" class="btn btn-lg btn-warning btn-ecomm px-5 py-3 col-lg-6" data-bs-toggle="offcanvas" data-bs-target="#checkoutModal"><i class="bi bi-basket2 me-2"></i>Buy Now</a>
                 </div>
               </div>
 
@@ -1669,7 +1669,29 @@
   <!-- add product to the cart dynamically -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="../../front_assets/js/axios_post.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.btn-default').on('click', function () {
+        $('.default-menu').slideToggle();
+        $('.dropdown-overlay').show();
+      });
 
+      $('.dropdown-overlay').on('click', function () {
+        $('.default-menu').hide();
+        $(this).hide();
+      });
+      $('.top-category-carousal').slick()
+
+      // Add click event handler to body
+      $('body').on('click', function (event) {
+        // Check if the clicked element is not inside the menu or the button
+        if (!$(event.target).closest('.default-menu').length && !$(event.target).is('.btn-default')) {
+          $('.default-menu').hide();
+          $('.dropdown-overlay').hide();
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
