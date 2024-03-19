@@ -19,7 +19,7 @@
   <link href="css/style.css" rel="stylesheet">
   <link href="css/dark-theme.css" rel="stylesheet">
 
-  <title>Shopingo - eCommerce HTML Template</title>
+  <title>Register</title>
 </head>
 
 <body class="">
@@ -208,7 +208,7 @@
           <ol class="breadcrumb mb-0">
             <li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
             <li class="breadcrumb-item"><a href="javascript:;">Authentication</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Login</li>
+            <li class="breadcrumb-item active" aria-current="page">Register</li>
           </ol>
         </nav>
       </div>
@@ -221,12 +221,12 @@
       <div class="container">
 
         <div class="row">
-          <div class="col-12 col-lg-6 col-xl-5 col-xxl-4 mx-auto">
+          <div class="col-12 col-lg-6 col-xl-5 col-xxl-5 mx-auto">
             <div class="card rounded-0">
               <div class="card-body p-4">
-                <h4 class="mb-0 fw-bold text-center">User Login</h4>
+                <h4 class="mb-0 fw-bold text-center">Registration</h4>
                 <hr>
-                <p class="mb-2">Join / Sign In using</p>
+                <p class="mb-2">Join / Sign Up using</p>
                 <div class="social-login mb-4">
                   <div class="row g-4">
                     <div class="col-xl-6">
@@ -245,24 +245,37 @@
                 <form>
                   <div class="row g-4">
                     <div class="col-12">
-                      <label for="exampleUsername" class="form-label">Username</label>
-                      <input type="text" class="form-control rounded-0" id="exampleUsername">
+                      <label for="exampleName" class="form-label">Name</label>
+                      <input type="text" class="form-control rounded-0" id="exampleName">
+                    </div>
+                    <div class="col-12">
+                      <label for="exampleMobile" class="form-label">Mobile</label>
+                      <input type="text" class="form-control rounded-0" id="exampleMobile">
+                    </div>
+                    <div class="col-12">
+                      <label for="exampleEmail" class="form-label">Email ID</label>
+                      <input type="text" class="form-control rounded-0" id="exampleEmail">
                     </div>
                     <div class="col-12">
                       <label for="examplePassword" class="form-label">Password</label>
                       <input type="text" class="form-control rounded-0" id="examplePassword">
                     </div>
                     <div class="col-12">
-                      <a href="javascript:;" class="text-content btn bg-light rounded-0 w-100"><i class="bi bi-lock me-2"></i>Forgot Password</a>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          I agree to Terms and Conditions
+                        </label>
+                      </div>
                     </div>
                     <div class="col-12">
                       <hr class="my-0">
                     </div>
                     <div class="col-12">
-                      <button type="button" class="btn btn-dark rounded-0 btn-ecomm w-100">Login</button>
+                      <button type="button" class="btn btn-dark rounded-0 btn-ecomm w-100">Sign Up</button>
                     </div>
                     <div class="col-12 text-center">
-                      <p class="mb-0 rounded-0 w-100">Don't have an account? <a href="javascript:;" class="text-danger">Sign Up</a></p>
+                      <p class="mb-0 rounded-0 w-100">Already have an account? <a href="javascript:;" class="text-danger">Sign In</a></p>
                     </div>
                   </div><!---end row-->
                 </form>

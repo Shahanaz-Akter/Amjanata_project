@@ -52,6 +52,7 @@ app.use('/product', require('./routes/productRoute'));
 app.use('/expense', require('./routes/expenseRoute'));
 app.use('/cms', require('./routes/cmsRoute'));
 app.use('/seller', require('./routes/sellerRoute'));
+app.use('/customer', require('./routes/customerRoute'));
 
 // app.use('/productcms', require('./routes/productCmsRoute'));
 

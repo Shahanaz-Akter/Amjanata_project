@@ -251,12 +251,13 @@
             <img src="img/ribon/Group 45-3.png" class="cart-img img-fluid" alt="">
 
             <div class="row my-5 ">
+
                 <div class="col-lg-6 col-sm-12">
 
                     <div class="bg-warning text-dark d-flex justify-content-between p-2 rounded">
                         <div><span>3 items</span></div>
                         <div>Subtotal:<span style="color: #FF406C
-              ;"> BDT1,000</span></div>
+                          ;"> BDT1,000</span></div>
 
                     </div>
 
@@ -363,7 +364,76 @@
                     </div>
 
                 </div>
+
+                <style>
+                    input {
+                        width: 100%;
+                        border: 1px solid #aaa;
+                        border-radius: 4px;
+                        /* margin: 8px 8px; */
+                        outline: none;
+                        padding: 8px;
+                        box-sizing: border-box;
+                        transition: .3s;
+                    }
+
+                    input[type=text]:focus {
+                        border-color: dodgerBlue;
+                        box-shadow: 0 0 8px 0 dodgerBlue;
+                    }
+                </style>
+
                 <div class="col-lg-6 col-sm-12">
+
+                    <div class="mb-2 p-3 text-dark" style="border: 2px solid#FF406C;">
+                        <h2 class="mb-4">Customer Information</h2>
+
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+                                <div><span>Mobile</span></div>
+                                <div><input type="text" id="mobile" placeholder="১১ ডিজিটের মোবাইল নাম্বারটি লিখুন।"></div>
+                            </div>
+
+                            <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+                                <div><span>Email</span></div>
+                                <div><input type="email" id="email" placeholder="xyz@gmail.com"></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+
+                                <div><span>Full Name</span></div>
+                                <div><input type="text" id="name" placeholder="Dr.John"></div>
+
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-2">
+
+                                <div><span>Area/ Address</span></div>
+                                <div><input type="text" id="area" placeholder="Dhanmondi,street-1200"></div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 mb-2">
+
+                                <div><span class="text">Select Delivery</span></div>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Select</option>
+                                    <option value="60">ঢাকা সিটির ভিতরে হোম ডেলিভারি (60Tk)</option>
+                                    <option value="150">ঢাকা সিটির বাহিরে হোম ডেলিভারি (150Tk)</option>
+                            </div>
+                        </div>
+
+
+                        <!-- <div class="mt-4">
+                                        <button class="btn text-light container" style="background-color: #FF406C;">Process To Checkout</button>
+                                    </div> -->
+                    </div>
+                    <br>
+
                     <div class="p-3 text-dark" style="border: 2px solid#FF406C;">
                         <h2 class="mb-4">Order Summary</h2>
                         <div class="mb-1 d-flex justify-content-between align-items-center">
@@ -384,6 +454,11 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
             </div>
         </div>
 

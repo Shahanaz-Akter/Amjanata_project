@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Add Customer</title>
+    <title>Edit Customer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
@@ -50,12 +50,12 @@
 
                         <div class="bg-white p-3 mb-2">
 
-                            <h4 class="text-black font-bold mb-3">Add Customer</h4>
+                            <h4 class="text-black font-bold mb-3">Edit Customer</h4>
 
                             <div style="color: rgb(97 97 97); margin-right: 0.5rem">
-                                <span>Customer</span>
+                                <span>Edit</span>
                                 <span>></span>
-                                <span>Add Customer</span>
+                                <span>Edit Customer</span>
                             </div>
                         </div>
 
@@ -64,19 +64,19 @@
 
                             <h3 class="mb-3">Create Customer</h3>
 
-                            <form action="/customer/post_customer" method="post">
+                            <form action="/customer/post_edit_customer/<%=customers._id%>" method="post">
 
                                 <div class="row">
 
                                     <div class="col-12 col-md-4 col-lg-4 col-xl-4 mb-3">
                                         <label for="customer_name" class="form-label">Customer Name</label>
-                                        <input class="form-control" id="customer_name" type="text" name="customer_name" placeholder="Walk - in - Customer">
+                                        <input class="form-control" id="customer_name" type="text" value="<%=customers.customer_name%>" name="customer_name" placeholder="Walk - in - Customer">
                                     </div>
 
 
                                     <div class="col-12 col-md-4 col-lg-4 col-xl-4 mb-4">
                                         <label for="dob" class="form-label">Date of Birth</label>
-                                        <input class="form-control custom-date-input" id="dob" type="date" name="birth" placeholder="MM/DD/YYYY" pattern="\d{2}/\d{2}/\d{4}">
+                                        <input class="form-control custom-date-input" id="dob" type="date" value="<%=customers.dob%>" name="birth" placeholder="MM/DD/YYYY" pattern="\d{2}/\d{2}/\d{4}">
                                     </div>
 
                                     <style>
@@ -93,38 +93,38 @@
 
                                     <div class="col-12 col-md-4 col-lg-4 col-xl-4 mb-3">
                                         <label for="mobile" class="form-label">Mobile</label>
-                                        <input type="text" id="mobile" class="form-control" placeholder="00 000 000 000" name="mobile" style="background: #FCFCFC!important;" required>
+                                        <input type="text" id="mobile" class="form-control" value="<%=customers.mobile%>" placeholder="00 000 000 000" name="mobile" style="background: #FCFCFC!important;" required>
                                     </div>
 
                                     <div class="col-12 col-md-4 col-lg-4 col-xl-4 mb-3">
                                         <label for="email" class="form-label">Email</label>
-                                        <input type="text" id="email" class="form-control" placeholder="xyx@gmail.com" name="email" style="background: #FCFCFC!important;">
+                                        <input type="text" id="email" class="form-control" placeholder="xyx@gmail.com" value="<%=customers.email%>" name="email" style="background: #FCFCFC!important;">
                                     </div>
 
                                     <div class="col-12 col-md-4 col-lg-4 col-xl-4 mb-3">
                                         <label for="country" class="form-label">Country</label>
-                                        <input type="text" id="country" class="form-control" placeholder="Dhaka" name="country" style="background: #FCFCFC!important;">
+                                        <input type="text" id="country" class="form-control" placeholder="Dhaka" value="<%=customers.country%>" name="country" style="background: #FCFCFC!important;">
                                     </div>
 
 
                                     <div class="col-12 col-md-4 col-lg-4 col-xl-4 mb-3">
                                         <label for="address" class="form-label">Address</label>
-                                        <input type="text" id="address " class="form-control" placeholder="Halmate Station, NY, USA" name="address" style="background: #FCFCFC!important;">
+                                        <input type="text" id="address " class="form-control" placeholder="Halmate Station, NY, USA" value="<%=customers.address%>" name="address" style="background: #FCFCFC!important;">
                                     </div>
                                     <div class="col-12 col-md-4 col-lg-4 col-xl-4 mb-3">
                                         <label for="zip_code" class="form-label">Zip Code</label>
-                                        <input type="text" id="zip_code " class="form-control" placeholder="9766767" name="zip_code" style="background: #FCFCFC!important;">
+                                        <input type="text" id="zip_code " class="form-control" placeholder="9766767" name="zip_code" value="<%=customers.zip_code%>" style="background: #FCFCFC!important;">
                                     </div>
 
                                     <div class="col-12 col-md-4 col-lg-4 col-xl-4 mb-4">
                                         <label for="dob" class="form-label">Date of Join</label>
-                                        <input class="form-control custom-date-input" id="date" type="date" name="date" placeholder="MM/DD/YYYY" pattern="\d{2}/\d{2}/\d{4}" min="">
+                                        <input class="form-control custom-date-input" id="date" type="date" name="date" value="<%=customers.date%>" placeholder="MM/DD/YYYY" pattern="\d{2}/\d{2}/\d{4}" min="">
                                     </div>
 
 
 
                                     <div class="col-12 col-md-12 col-lg-12 col-xl-12">
-                                        <button type="submit" class="btn btn-lg btn-primary">Create Customer</button>
+                                        <button type="submit" class="btn btn-lg btn-primary">Edit Customer</button>
                                     </div>
 
                                 </div>
