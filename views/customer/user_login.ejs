@@ -265,35 +265,43 @@
                     </div>
                   </div>
                 </div>
-                <div class="separator mb-4">
+                <div class="separator mb-2">
                   <div class="line"></div>
                   <p class="mb-0 fw-bold">Or</p>
                   <div class="line"></div>
                 </div>
-                <form>
-                  <div class="row g-4">
-                    <div class="col-12">
-                      <label for="exampleUsername" class="form-label">Username</label>
-                      <input type="text" class="form-control rounded-0" id="exampleUsername">
-                    </div>
-                    <div class="col-12">
-                      <label for="examplePassword" class="form-label">Password</label>
-                      <input type="text" class="form-control rounded-0" id="examplePassword">
-                    </div>
-                    <div class="col-12">
-                      <a href="javascript:;" class="text-content btn bg-light rounded-0 w-100"><i class="bi bi-lock me-2"></i>Forgot Password</a>
-                    </div>
-                    <div class="col-12">
-                      <hr class="my-0">
-                    </div>
-                    <div class="col-12">
-                      <button type="button" class="btn btn-dark rounded-0 btn-ecomm w-100">Login</button>
-                    </div>
-                    <div class="col-12 text-center">
-                      <p class="mb-0 rounded-0 w-100">Don't have an account? <a href="javascript:;" class="text-danger">Sign Up</a></p>
-                    </div>
-                  </div><!---end row-->
-                </form>
+                <% if((error)){%>
+                  <div class="text-danger text-center p-2 fw-bold border mb-1">
+                    <%=error%>
+                  </div>
+                  <%}else{%>
+                    <p></p>
+                    <%}%>
+
+                      <form action="/customer/post_login_customer" method="post">
+                        <div class="row g-4">
+                          <div class="col-12 d-none">
+                            <label for="name" class="form-label">Username</label>
+                            <input type="text" class="form-control rounded-0" id="name" name="name">
+                          </div>
+                          <div class="col-12">
+                            <label for="mobile" class="form-label">Mobile</label>
+                            <input type="text" id="mobile" class="form-control" placeholder="00 000 000 000" name="mobile" style="background: #FCFCFC!important;" required>
+                          </div>
+                          <div class="col-12 d-none">
+                            <a href="javascript:;" class="text-content btn bg-light rounded-0 w-100"><i class="bi bi-lock me-2"></i>Forgot Password</a>
+                          </div>
+                          <div class="col-12">
+                            <hr class="my-0">
+                          </div>
+                          <div class="col-12">
+                            <button type="submit" class="btn btn-dark rounded-0 btn-ecomm w-100">Login</button>
+                          </div>
+                          <div class="col-12 text-center">
+                            <p class="mb-0 rounded-0 w-100">Don't have an account? <a href="/customer/user_register" class="text-danger">Sign Up</a></p>
+                          </div>
+                        </div><!---end row-->
+                      </form>
               </div>
             </div>
           </div>

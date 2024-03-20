@@ -567,7 +567,9 @@ const ProductDetails = async (req, res) => {
         // console.log(records);
         let reviews = [];
 
-        // console.log('records: ', records);
+        req.session.details_route = '/product' + req.url;
+        // console.log('url:  ', req.url);
+
         res.render('product/product_details.ejs', { parent, records, reviews });
 
     }
@@ -651,7 +653,9 @@ const cart = async (req, res) => {
         let product_id = req.params.id;
         let product = await Product.findById(product_id);
         console.log(product);
-        res.render('user/cart.ejs', { parent, product });
+
+
+        res.render('product/cart.ejs', { parent, product, locals: { session: req.session } });
     }
     catch (err) {
         console.log(err);

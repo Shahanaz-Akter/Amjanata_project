@@ -93,46 +93,31 @@
         </div>
         <div class="offcanvas-body primary-menu">
           <ul class="navbar-nav justify-content-start flex-grow-1 gap-2">
+            <li class="mx-auto search w-100 me-1" style="list-style: none">
+              <div class="d-flex align-items-center justify-content-between w-100">
+                <div class="dropdown mx-1 nav-item">
+                  <a class="categories btn cat-btn-default-1 dropdown-toggle px-1" type="button" id="catDropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: small; padding: 7px 0">
+                    Categories
+                  </a>
+                  <ul class="c-dropdown-menu dropdown-menu px-2" aria-labelledby="catDropdownMenu1" style="display: none;">
+                    <% parent.forEach(p=>{ %>
 
-            <div class="nav-item dropdown d-none d-lg-block">
-              <a class="nav-link categories dropdown-toggle dropdown-toggle-nocaret m-2 px-3 py-0 px-5" style="
-              height: 40px; border-radius:5px; font-size:small;font-weight: 600;" href="javascript:;" data-bs-toggle="dropdown">
-                Categories
-                <i class="bi bi-caret-down-fill"></i>
-              </a>
+                      <li><a href="/">
+                          <%=p.parent_category%>
+                        </a></li>
+                      <%});%>
+                  </ul>
+                </div>
 
-              <ul class="dropdown-menu">
-                <% parent.forEach(p=>{ %>
-                  <li>
-                    <a class="dropdown-item" href="">
-                      <%=p.parent_category%>
-                    </a>
-                  </li>
-                  <%});%>
-              </ul>
+                <form class="categories rounded-3 w-100 d-flex" style="width: 255px; border-radius: 15px">
+                  <button class="rounded-3 categories" type="submit">
+                    <i class="fa fa-search text-secondary"></i>
+                  </button>
+                  <input id="smallSearchBar" class="rounded-3 categories fs-6" style="outline: none; border-radius: 15px" type="text" placeholder="Search for Products, Brand ...." name="search" />
+                </form>
+              </div>
+            </li>
 
-            </div>
-
-            <div class="dropdown mx-1 nav-item d-none d-md-block d-lg-none">
-              <a class="categories btn btn-default dropdown-toggle m-2 px-3 py-2 px-5" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="font-size: small;padding: 7px 0;">
-                Categories
-              </a>
-              <ul class="dropdown-menu default-menu px-2" aria-labelledby="dropdownMenu1">
-                <% parent.forEach(p=>{ %>
-                  <li>
-                    <a class="dropdown-item" href="/">
-                      <%=p.parent_category%>
-                    </a>
-                  </li>
-                  <%});%>
-              </ul>
-            </div>
-
-            <div class="d-lg-block d-lg-flex d-md-flex d-none d-sm-none mt-2 position-relative search-box w-md-auto" style="width: 70%;">
-              <div class="position-absolute position-absolute start-0 translate-middle ms-4 fs-5" style="top: 21px;"><i class="bi bi-search" style="font-size:medium;"></i></div>
-              <input class="form-control form-control-lg ps-5 rounded-3 categories" style="width: 100%;
-              height: 40px; border-radius:5px; font-size:medium; border-width: 0;;" type="text" placeholder="Search for Products, Brand and More">
-            </div>
             <!-- <ul class="navbar-nav secondary-menu flex-row">
               <li class="nav-item ">
                 <a class="nav-link" style="font-size:15px;font-weight: 500;" href="account-dashboard.html"><i
@@ -4400,7 +4385,7 @@
 
     <div class="row">
 
-      <div class="col-12 col-md-4 col-lg-3 col-xl-3" style="border: 0px solid ;">
+      <div class="col-12 col-md-6 mt-4 col-lg-3 col-xl-3 text-center text-md-start mt-lg-0" style="border: 0px solid ;">
         <div class="">
           <h5 class="mb-3 fw-bold">About Us</h5>
           <div class="list-unstyled">
@@ -4420,7 +4405,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-md-4 col-lg-3 col-xl-3" style="border: 0px solid ;">
+      <div class="col-12 col-md-6 mt-4 col-lg-3 col-xl-3 text-center text-md-start mt-lg-0" style="border: 0px solid ;">
         <div class="">
           <h5 class="mb-3 fw-bold">Help</h5>
           <ul class="list-unstyled">
@@ -4437,7 +4422,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-sm-2 col-md-3 col-lg-3 col-xl-3" style="border: 0px solid ;">
+      <div class="col-12 col-md-6 mt-4 col-lg-3 col-xl-3 text-center text-md-start mt-lg-0" style="border: 0px solid ;">
         <div class="">
           <h5 class="mb-3 fw-bold">Stores</h5>
           <ul class="list-unstyled">
@@ -4448,7 +4433,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-md-4 col-lg-3 col-xl-3" style="border: 0px solid ;">
+      <div class="col-12 col-md-6 mt-4 col-lg-3 col-xl-3 text-center text-md-start mt-lg-0" style="border: 0px solid ;">
         <div class="">
           <h5 class="mb-3 fw-bold">Services</h5>
           <ul class="list-unstyled">
@@ -4507,11 +4492,18 @@
   <script src="../../front_assets/js/index.js"></script>
   <script src="../../front_assets/js/loader.js"></script>
 
+
+  <!-- dropdon all  modified code -->
   <script>
     $(document).ready(function () {
       $('.btn-default').on('click', function () {
         $('.default-menu').slideToggle();
         $('.dropdown-overlay').show();
+      });
+
+      //category dropdown jquery
+      $(".cat-btn-default-1").on("click", function () {
+        $(".c-dropdown-menu").slideToggle();
       });
 
       $('.dropdown-overlay').on('click', function () {
@@ -4523,8 +4515,9 @@
       // Add click event handler to body
       $('body').on('click', function (event) {
         // Check if the clicked element is not inside the menu or the button
-        if (!$(event.target).closest('.default-menu').length && !$(event.target).is('.btn-default')) {
+        if (!$(event.target).closest('.default-menu').length && !$(event.target).is('.btn-default') && !$(event.target).is('.cat-btn-default-1')) {
           $('.default-menu').hide();
+          $('.c-dropdown-menu').hide();
           $('.dropdown-overlay').hide();
         }
       });
