@@ -2,23 +2,19 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-    mobile: {
-        type: String,
-        required: true,
-        unique: true,
-    },
+
     address: {
         type: String,
         required: false,
         unique: false
     },
-    delivery_charge: {
-        type: Integer,
+    delivery: {
+        type: Number,
         required: true,
         unique: false
     },
     products: {
-        type: [String],
+        type: [],
         required: true,
 
     },
@@ -26,14 +22,7 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: false
     },
-    total: {
-        type: Number,
-        required: false
-    },
-    discount: {
-        type: Number,
-        required: false
-    },
+
     total_amount: {
         type: Number,
         required: false

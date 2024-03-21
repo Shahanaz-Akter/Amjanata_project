@@ -6,6 +6,8 @@ let subCategory = require('../models/subcategory');
 let Category = require('../models/category');
 let Product = require('../models/product');
 let Customer = require('../models/customer');
+const Order = require('../models/order');
+
 const { ObjectId } = require('mongodb'); // if using MongoDB native driver
 
 
@@ -266,13 +268,14 @@ const addCart = async (req, res) => {
 
         let product_id = req.params.id;
         let single_product = await Product.findOne({ _id: new ObjectId(product_id) });
-        // console.log(product);
+        // console.log(single_product);
         let product_arr = req.session.products ? req.session.products : [];
 
         let product = {
+            'id': single_product._id,
             'name': single_product.name,
             'primary_image': single_product.primary_image,
-            'name': single_product.selling_price,
+            'selling_price': single_product.selling_price,
             'discount': single_product.discount,
         }
 
@@ -286,17 +289,63 @@ const addCart = async (req, res) => {
             res.redirect('/customer/user_login');
         }
 
-        // res.render('customer/user_login.ejs', { parent, error });
     }
     catch (e) {
         console.log(e.message);
     }
 }
 
-const ses = (req, res) => {
-    res.send(req.session.auth_user);
+const deleteSessionProduct = async (req, res) => {
+    let id = req.body.id;
+    let sessionProduct = req.session.products;
+    req.session.products = sessionProduct.filter(element => element.id !== id); //update session without existing id
+    res.send({
+        success: true
+    })
+
+}
+const postOrder = async (req, res) => {
+    console.log('post Order');
+
+    let { address, delivery } = req.body;
+    console.log('Address: ', address);
+    console.log('Delivery: ', delivery);
+    let session_products_list = req.session.products;
+    console.log(session_products_list);
+    try {
+        let order = await Order.create({
+            address: address,
+            delivery: parseInt(delivery),
+            products: session_products_list,
+            sub_total: null,
+            total_amount: null
+        });
+        if (order) {
+            req.session.products = [];
+            res.redirect('/');
+
+        }
+    }
+    catch (e) {
+        console.log(e.message);
+    }
 }
 
-module.exports = { ses, addCustomer, postCustomer, postEditCustomer, customerList, editCustomer, deleteCustomer, userLogin, userRegister, addCart, postRegisterCustomer, postLoginCustomer }
+
+const ses = (req, res) => {
+    console.log(req.session.auth_user);
+    res.send(req.session.products);
+
+}
+const addOrder = async (req, res) => {
+
+    res.render('order/add_order.ejs');
+}
+const orderList = async (req, res) => {
+
+    let orders = await Order.find({});
+    res.render('order/order_list.ejs', { orders });
+}
+module.exports = { addOrder, orderList, ses, deleteSessionProduct, postOrder, addCustomer, postCustomer, postEditCustomer, customerList, editCustomer, deleteCustomer, userLogin, userRegister, addCart, postRegisterCustomer, postLoginCustomer }
 
 

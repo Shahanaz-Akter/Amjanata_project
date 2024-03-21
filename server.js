@@ -54,16 +54,23 @@ app.use('/cms', require('./routes/cmsRoute'));
 app.use('/seller', require('./routes/sellerRoute'));
 app.use('/customer', require('./routes/customerRoute'));
 
+app.use('/api', require('./routes/apiRoute')); //endpoint route for all device
+
 // app.use('/productcms', require('./routes/productCmsRoute'));
 
 const port = process.env.PORT || 5000;
-app.listen(port, () => {
-    // console.log('Successfully Connected');
-    console.log(`http://localhost:${port}/`);
+// app.listen(port, () => {
+//     // console.log('Successfully Connected');
+//     console.log(`http://localhost:${port}/`);
+// });
+
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Server running on http://0.0.0.0:${port}`);
 });
 
-// https://www.youtube.com/watch?v=HK6y8DAPN_0&pp=ygUjaW50cm9kdWNpbmcgc29yYSB0ZXh0IHZpZGVvIGVkaXRpbmc%3D
+// http://192.168.0.111:8000/api/lower_category
 
+// https://www.youtube.com/watch?v=HK6y8DAPN_0&pp=ygUjaW50cm9kdWNpbmcgc29yYSB0ZXh0IHZpZGVvIGVkaXRpbmc%3D
 
 
 

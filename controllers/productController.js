@@ -465,7 +465,6 @@ const getCategory = async (req, res) => {
     }
 }
 
-
 const allProduct = async (req, res) => {
     try {
         let parent = await parentCategory.aggregate([
@@ -653,7 +652,6 @@ const cart = async (req, res) => {
         let product_id = req.params.id;
         let product = await Product.findById(product_id);
         console.log(product);
-
 
         res.render('product/cart.ejs', { parent, product, locals: { session: req.session } });
     }
