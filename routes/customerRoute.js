@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 // const multer = require('multer');
-const { addOrder, orderList, ses, deleteSessionProduct, postOrder, userLogin, userRegister, addCart, addCustomer, postCustomer, customerList, editCustomer, postEditCustomer, deleteCustomer, postRegisterCustomer, postLoginCustomer } = require('../controllers/customerController');
+const { addOrder, orderList, ses, deleteSessionProduct, postOrder, userLogin, userRegister, addCart, addCustomer, postCustomer, customerList, editCustomer, postEditCustomer, deleteCustomer, postRegisterCustomer, postLoginCustomer,productIncDec } = require('../controllers/customerController');
 
 router.get('/ses', ses);
 
@@ -27,6 +27,9 @@ router.post('/post_login_customer', postLoginCustomer);
 
 router.get('/add_order', addOrder);
 router.get('/order_list', orderList);
+
+
+router.post('/product_increment', productIncDec);
 
 
 module.exports = router;

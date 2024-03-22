@@ -222,7 +222,6 @@ const postLoginCustomer = async (req, res) => {
 
         }
 
-
     }
     catch (err) {
         console.log(err);
@@ -269,18 +268,31 @@ const addCart = async (req, res) => {
         let product_id = req.params.id;
         let single_product = await Product.findOne({ _id: new ObjectId(product_id) });
         // console.log(single_product);
-        let product_arr = req.session.products ? req.session.products : [];
 
-        let product = {
+        //initialize product array based on session array
+        let product_arr = req.session.products ? req.session.products : [];
+        let dis = single_product.selling_price - (single_product.selling_price * single_product.discount / 100);
+        // console.log("dis: ", dis);
+        // console.log(typeof (dis));
+
+        let modified_product = {
             'id': single_product._id,
             'name': single_product.name,
             'primary_image': single_product.primary_image,
-            'selling_price': single_product.selling_price,
+            'selling_price': single_product.discount ? Math.round(dis) : single_product.selling_price,
+            'qty': 1,
+            'price_without_discount': Math.round(dis),
             'discount': single_product.discount,
         }
 
-        product_arr.push(product);
-        req.session.products = product_arr;
+        //single matched product will store this array objevt
+        let matched_product = await product_arr.filter(p => { return p.id == single_product._id });
+        // console.log('matched_product: ', matched_product);
+
+        if (matched_product.length == 0) { //if not matched then session product will be stored
+            product_arr.push(modified_product);
+            req.session.products = product_arr;
+        }
 
         if (req.session.auth_user) {
             res.redirect('/product/cart');
@@ -304,6 +316,54 @@ const deleteSessionProduct = async (req, res) => {
     })
 
 }
+
+const productIncDec = async (req, res) => {
+    let qty, price_without_discount, subT = 0;
+    let id = req.body.product_id;
+    let reason = req.body.reason;
+    let cart = req.session.products;
+    await cart.forEach(element => {
+        if (element.id == id) {
+            if (reason == "plus") {
+                element.qty = element.qty + 1;
+                element.price_without_discount = element.qty * element.selling_price;
+            }
+            if (reason == "minus") {
+                if (element.qty == 1) {
+                    element.qty = element.qty;
+                    element.price_without_discount = element.price_without_discount;
+                }
+                else {
+                    element.qty = element.qty - 1;
+                    element.price_without_discount = element.price_without_discount - element.selling_price;
+                }
+
+            }
+            qty = element.qty;
+            price_without_discount = element.price_without_discount;
+        }
+    });
+
+    req.session.products = cart;
+    // console.log('cart_products ', req.session.products);
+
+    // adding sub total from all session inc dec products
+    cart.forEach(ele => {
+        subT = subT + ele.price_without_discount;
+    });
+
+    console.log('Sub Total: ',subT);
+
+        res.send({
+            success: true,
+            locals: { session: req.session },
+            qty: qty,
+            price_without_discount: price_without_discount,
+            sub_total: subT
+        })
+
+}
+
 const postOrder = async (req, res) => {
     console.log('post Order');
 
@@ -346,6 +406,6 @@ const orderList = async (req, res) => {
     let orders = await Order.find({});
     res.render('order/order_list.ejs', { orders });
 }
-module.exports = { addOrder, orderList, ses, deleteSessionProduct, postOrder, addCustomer, postCustomer, postEditCustomer, customerList, editCustomer, deleteCustomer, userLogin, userRegister, addCart, postRegisterCustomer, postLoginCustomer }
+module.exports = { addOrder, orderList, ses, deleteSessionProduct, postOrder, addCustomer, postCustomer, postEditCustomer, customerList, editCustomer, deleteCustomer, userLogin, userRegister, addCart, postRegisterCustomer, postLoginCustomer, productIncDec }
 
 

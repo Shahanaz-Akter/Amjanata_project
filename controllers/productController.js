@@ -653,6 +653,7 @@ const cart = async (req, res) => {
         let product = await Product.findById(product_id);
         console.log(product);
 
+        
         res.render('product/cart.ejs', { parent, product, locals: { session: req.session } });
     }
     catch (err) {
