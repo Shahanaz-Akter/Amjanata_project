@@ -53,7 +53,7 @@ app.use('/expense', require('./routes/expenseRoute'));
 app.use('/cms', require('./routes/cmsRoute'));
 app.use('/seller', require('./routes/sellerRoute'));
 app.use('/customer', require('./routes/customerRoute'));
-
+app.use('/seller', require('./routes/sellerRoute'));
 app.use('/api', require('./routes/apiRoute')); //endpoint route for all device
 
 // app.use('/productcms', require('./routes/productCmsRoute'));

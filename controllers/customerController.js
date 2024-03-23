@@ -366,19 +366,24 @@ const productIncDec = async (req, res) => {
 
 const postOrder = async (req, res) => {
     console.log('post Order');
-
+    let subT=0;
     let { address, delivery } = req.body;
     console.log('Address: ', address);
     console.log('Delivery: ', delivery);
     let session_products_list = req.session.products;
     console.log(session_products_list);
+
+    session_products_list.forEach(ele => {
+        subT = subT + ele.price_without_discount;
+    });
+
     try {
         let order = await Order.create({
             address: address,
             delivery: parseInt(delivery),
             products: session_products_list,
-            sub_total: null,
-            total_amount: null
+            sub_total: subT,
+            total_amount: parseInt(delivery)+subT
         });
         if (order) {
             req.session.products = [];

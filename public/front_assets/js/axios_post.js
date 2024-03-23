@@ -24,11 +24,16 @@ const change_quantity_value = async (reason, id, tag) => {
     let total_holder = document.querySelector(`#price_without_discount_${id}`);
     total_holder.innerHTML = await response.data.price_without_discount;
 
-    let subT_holder = document.querySelector('.sub_total');
+    let subT_holder = document.querySelectorAll('.sub_total');
+    console.log('subT_holder: ', subT_holder);
 
-    if (subT_holder) {
-        subT_holder.innerHTML = response.data.sub_total;
-    }
+    Array.from(subT_holder).forEach(ele=>{
+        ele.innerHTML = response.data.sub_total;
+    });
+
+    // if (subT_holder) {
+    //     subT_holder.innerHTML = response.data.sub_total;
+    // }
 
 }
 
