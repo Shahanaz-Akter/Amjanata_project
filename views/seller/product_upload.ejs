@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en" class="light-theme">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--favicon-->
+    <link rel="icon" href="img/logo.ico" type="image/webp" />
+
+    <!-- CSS files -->
+    <link href="../../front_assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
+    <!-- Plugins -->
+    <link rel="stylesheet" type="text/css" href="../../front_assets/plugins/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="../../front_assets/plugins/slick/slick-theme.css" />
+
+    <link href="../../front_assets/css/style.css" rel="stylesheet" />
+    <link href="../../front_assets/css/dark-theme.css" rel="stylesheet" />
+
+    <link href="https://unpkg.com/singledivui/dist/singledivui.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/singledivui/dist/singledivui.min.js"></script>
+
+    <title>Seller Product Upload</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            /* border: 2px solid rgb(200, 200, 200); */
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        td {
+            /* border: 1px solid rgb(190, 190, 190); */
+            padding: 10px 20px;
+            background-color: #9acba070;
+            color: black;
+        }
+
+        th {
+            background-color: #464748;
+            color: #fff;
+        }
+
+        table th:first-child {
+            border-top-left-radius: 10px;
+        }
+
+        table th:last-child {
+            border-top-right-radius: 10px;
+        }
+
+        caption {
+            padding: 10px;
+        }
+
+        /* sidebar css  */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #ffffff;
+            transition: left 0.3s ease;
+            box-sizing: border-box;
+            box-shadow: 0px 1px 15px gray;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li a {
+            color: #464748;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #80808040;
+            padding-left: 20px;
+        }
+
+        /* footer css  */
+        .tab-item1 {
+            text-align: center;
+            text-decoration: none;
+            color: #000;
+            padding: 12px;
+        }
+
+        .tab-item1:focus {
+            text-decoration: none;
+            color: #3bb44a;
+            background-color: #fff;
+        }
+
+        .tab-item1:focus path {
+            text-decoration: none;
+            color: #3bb44a;
+            fill: #3bb44a;
+            background-color: #fff;
+        }
+
+        .tab-item1:hover {
+            color: #3bb44a;
+        }
+
+        .tab-item1:hover path {
+            fill: #3bb44a;
+        }
+    </style>
+</head>
+
+<body>
+    <!--start top header-->
+    <header class="top-header">
+        <nav class="navbar navbar-expand-md w-100 navbar-dark container gap-3">
+            <h3 class="fw-bold ms-2 mt-1" style="margin-bottom: 0px; padding: 5px; cursor: pointer" id="threeBar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="15" viewBox="0 0 21 15" fill="none">
+                    <path d="M1.72997 7.60657H19.73M1.72997 1.60657H19.73M1.72997 13.6066H19.73" stroke="#464748" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </h3>
+            <ul class="navbar-nav secondary-menu flex-row">
+                <li class="nav-item d-none d-lg-block s-sidebar__trigger">
+                    <a class="nav-link" href="javascript:;"><i class="fas fa-user-edit"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="21" viewBox="0 0 19 21" fill="none">
+                            <path
+                                d="M7.45923 19.0896C8.09385 19.6498 8.92747 19.9896 9.84047 19.9896C10.7535 19.9896 11.5871 19.6498 12.2217 19.0896M15.2405 7.38962C15.2405 5.95745 14.6715 4.58394 13.6588 3.57125C12.6462 2.55855 11.2726 1.98962 9.84047 1.98962C8.4083 1.98962 7.03479 2.55855 6.02209 3.57125C5.0094 4.58394 4.44047 5.95745 4.44047 7.38962C4.44047 10.1708 3.73889 12.075 2.95517 13.3345C2.29409 14.3969 1.96354 14.9281 1.97566 15.0763C1.98908 15.2404 2.02385 15.303 2.15607 15.401C2.27548 15.4896 2.8138 15.4896 3.89044 15.4896H15.7905C16.8671 15.4896 17.4055 15.4896 17.5249 15.401C17.6571 15.303 17.6919 15.2404 17.7053 15.0763C17.7174 14.9281 17.3869 14.3969 16.7258 13.3345C15.942 12.075 15.2405 10.1708 15.2405 7.38962Z"
+                                stroke="#464748" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link position-relative" href="cart.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                            <path d="M10.0919 10.5768C12.5772 10.5768 14.5919 8.56206 14.5919 6.07678C14.5919 3.5915 12.5772 1.57678 10.0919 1.57678C7.60664 1.57678 5.59192 3.5915 5.59192 6.07678C5.59192 8.56206 7.60664 10.5768 10.0919 10.5768Z" stroke="#464748" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6.10156 13.7401C1.98095 13.6858 1.58329 17.6483 1.89954 19.6364H18.3685C18.3685 17.8139 18.5025 13.9351 14.3714 13.7401H6.10156Z" stroke="#464748" stroke-width="2" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar">
+            <div class="d-flex justify-content-end align-items-center" style="
+            height: 50px;
+            box-sizing: border-box;
+            box-shadow: -2px 1px 4px gray;
+          ">
+                <h3 style="width: 20px; margin-right: 10px; cursor: pointer" onclick="closeSideBar()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <path
+                            d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                    </svg>
+                </h3>
+            </div>
+            <ul>
+                <li><a href="/seller/app_home">Home</a></li>
+                <li><a href="/seller/info">Add Info</a></li>
+                <li><a href="/seller/product_list">Priduct</a></li>
+                <li><a href="/seller/advice">Advice</a></li>
+                <li><a href="/seller/order_list">Order List</a></li>
+                <li><a href="/seller/sales_payment">Sales Payment</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <script>
+        const threeBar = document.getElementById("threeBar");
+        const sidebar = document.querySelector(".sidebar");
+
+        threeBar.addEventListener("click", function () {
+            sidebar.style.left = sidebar.style.left === "0px" ? "-250px" : "0px";
+        });
+
+        const closeSideBar = () => {
+            sidebar.style.left = sidebar.style.left === "-250px" ? "0px" : "-250px";
+        };
+    </script>
+
+    <!--end top header-->
+
+    <div class="mx-3" style="margin-bottom: 130px">
+        <div class="my-3">
+            <a href="/seller/upload" class="btn w-100 p-2 mt-3 btn text-light" style="background-color: #3bb44a">
+                ADD PRODUCT
+            </a>
+        </div>
+
+        <table class="mt-4">
+            <tr>
+                <th>
+                    Gross <br />
+                    Products
+                </th>
+                <th class="">
+                    Sold <br />
+                    Item
+                </th>
+            </tr>
+            <tr>
+                <td style="
+              border-right: 1px solid rgb(190, 190, 190);
+              border-bottom-left-radius: 10px;
+            ">
+                    12
+                </td>
+                <td style="border-bottom-right-radius: 10px">08</td>
+            </tr>
+        </table>
+        <div>
+            <style>
+                body .cell {
+                    padding: 0px 0px 0px 30px;
+                }
+
+                .sd-bar {
+                    --bar: linear-gradient(#9acba0 100%, transparent);
+                    border-bottom-left-radius: 10px;
+                    border-color: #9acba0;
+                }
+
+                .sd-graph {
+                    --_x-grid-line-color: #9acba0;
+                    --_y-grid-line-color: #9acba0;
+                }
+            </style>
+
+            <h2 class="mb-4 mt-5 text-center">Sales Details</h2>
+            <div class="cell mb-5">
+                <div id="chart2"></div>
+            </div>
+
+            <script>
+                const { Chart } = SingleDivUI;
+
+                const options = {
+                    data: {
+                        labels: ["1", "2", "3", "4"],
+                        series: {
+                            points: [15, 9, 25, 18],
+                        },
+                    },
+                    height: 200,
+                    width: "100%",
+                    barColors: "#9ACBA0",
+                };
+
+                new Chart("#chart2", {
+                    type: "bar",
+                    ...options,
+                });
+            </script>
+        </div>
+
+        <div class="d-flex rounded mt-3 p-2" style="
+          background-color: #f9fff9;
+          box-shadow: 0 10px 16px 0 #d1edd5, 0 6px 20px 0 #d1edd5;
+        ">
+            <img src="../../front_assets/img/advice/Icon (1).png" style="height: 100px" />
+            <div class="ps-3">
+                <h3 style="margin-bottom: 0px">Product Name</h3>
+                <p style="margin-bottom: 0px">Price:</p>
+                <p style="margin-bottom: 0px">Product Id:</p>
+                <p style="margin-bottom: 0px">User Id:</p>
+                <p style="margin-bottom: 0px">Address:</p>
+                <p style="margin-bottom: 0px">Order Date:</p>
+            </div>
+        </div>
+        <div class="d-flex rounded mt-3 p-2" style="
+          background-color: #f9fff9;
+          box-shadow: 0 10px 16px 0 #d1edd5, 0 6px 20px 0 #d1edd5;
+        ">
+            <img src="../../front_assets/img/advice/Icon (1).png" style="height: 100px" />
+            <div class="ps-3">
+                <h3 style="margin-bottom: 0px">Product Name</h3>
+                <p style="margin-bottom: 0px">Price:</p>
+                <p style="margin-bottom: 0px">Product Id:</p>
+                <p style="margin-bottom: 0px">User Id:</p>
+                <p style="margin-bottom: 0px">Address:</p>
+                <p style="margin-bottom: 0px">Order Date:</p>
+            </div>
+        </div>
+        <div class="d-flex rounded mt-3 p-2" style="
+          background-color: #f9fff9;
+          box-shadow: 0 10px 16px 0 #d1edd5, 0 6px 20px 0 #d1edd5;
+        ">
+            <img src="../../front_assets/img/advice/Icon (1).png" style="height: 100px" />
+            <div class="ps-3">
+                <h3 style="margin-bottom: 0px">Product Name</h3>
+                <p style="margin-bottom: 0px">Price:</p>
+                <p style="margin-bottom: 0px">Product Id:</p>
+                <p style="margin-bottom: 0px">User Id:</p>
+                <p style="margin-bottom: 0px">Address:</p>
+                <p style="margin-bottom: 0px">Order Date:</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer  -->
+
+    <div class="tab shadow-lg">
+        <a class="tab-item1" href="/seller/app_home">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="none">
+                <path
+                    d="M10.043 1.09542C9.69171 0.822167 9.51605 0.68554 9.32208 0.633022C9.15093 0.586682 8.97053 0.586682 8.79938 0.633022C8.60541 0.68554 8.42975 0.822167 8.07843 1.09542L1.29612 6.37055C0.842751 6.72317 0.616067 6.89948 0.452757 7.12028C0.308096 7.31587 0.200331 7.5362 0.134757 7.77047C0.06073 8.03494 0.06073 8.32212 0.06073 8.89647V16.1314C0.06073 17.2515 0.06073 17.8116 0.278717 18.2394C0.470464 18.6157 0.776425 18.9217 1.15275 19.1134C1.58057 19.3314 2.14062 19.3314 3.26073 19.3314H5.26073C5.54076 19.3314 5.68077 19.3314 5.78773 19.2769C5.88181 19.229 5.9583 19.1525 6.00623 19.0584C6.06073 18.9514 6.06073 18.8114 6.06073 18.5314V11.9314C6.06073 11.3714 6.06073 11.0913 6.16972 10.8774C6.2656 10.6893 6.41858 10.5363 6.60674 10.4404C6.82065 10.3314 7.10068 10.3314 7.66073 10.3314H10.4607C11.0208 10.3314 11.3008 10.3314 11.5147 10.4404C11.7029 10.5363 11.8559 10.6893 11.9517 10.8774C12.0607 11.0913 12.0607 11.3714 12.0607 11.9314V18.5314C12.0607 18.8114 12.0607 18.9514 12.1152 19.0584C12.1632 19.1525 12.2397 19.229 12.3337 19.2769C12.4407 19.3314 12.5807 19.3314 12.8607 19.3314H14.8607C15.9808 19.3314 16.5409 19.3314 16.9687 19.1134C17.345 18.9217 17.651 18.6157 17.8427 18.2394C18.0607 17.8116 18.0607 17.2515 18.0607 16.1314V8.89647C18.0607 8.32212 18.0607 8.03494 17.9867 7.77047C17.9211 7.5362 17.8134 7.31587 17.6687 7.12028C17.5054 6.89948 17.2787 6.72317 16.8253 6.37055L10.043 1.09542Z"
+                    fill="#464748" />
+            </svg><br />
+            <span>Home</span>
+        </a>
+
+        <a class="tab-item1" href="/seller/product_list">
+            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="18" viewBox="0 0 21 23" fill="none">
+                <path
+                    d="M14.4403 8.13855V5.13855C14.4403 2.92941 12.6494 1.13855 10.4403 1.13855C8.23116 1.13855 6.4403 2.92941 6.4403 5.13855V8.13855M2.03231 9.49051L1.43231 15.8905C1.26171 17.7102 1.17641 18.6201 1.47835 19.3228C1.7436 19.9402 2.20842 20.4506 2.79832 20.7723C3.46983 21.1385 4.38367 21.1385 6.21135 21.1385H14.6693C16.4969 21.1385 17.4108 21.1385 18.0823 20.7723C18.6722 20.4506 19.137 19.9402 19.4023 19.3228C19.7042 18.6201 19.6189 17.7102 19.4483 15.8905L18.8483 9.49052C18.7042 7.9539 18.6322 7.18559 18.2866 6.60471C17.9823 6.09313 17.5326 5.68366 16.9949 5.42839C16.3843 5.13855 15.6126 5.13855 14.0693 5.13855L6.81135 5.13855C5.26799 5.13855 4.49631 5.13855 3.88572 5.42839C3.34797 5.68366 2.89831 6.09313 2.59396 6.60471C2.24839 7.18558 2.17636 7.95389 2.03231 9.49051Z"
+                    stroke="#464748" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg><br />
+            <span>Product</span>
+        </a>
+
+        <a class="tab-item1" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 21 22" fill="none">
+                <path
+                    d="M1.83026 6.53499C1.83026 4.85483 1.83026 4.01475 2.15724 3.37301C2.44486 2.80853 2.9038 2.34959 3.46829 2.06197C4.11002 1.73499 4.9501 1.73499 6.63026 1.73499H15.0303C16.7104 1.73499 17.5505 1.73499 18.1922 2.06197C18.7567 2.34959 19.2157 2.80853 19.5033 3.37301C19.8303 4.01475 19.8303 4.85483 19.8303 6.53499V11.935C19.8303 13.6151 19.8303 14.4552 19.5033 15.097C19.2157 15.6614 18.7567 16.1204 18.1922 16.408C17.5505 16.735 16.7104 16.735 15.0303 16.735H12.514C11.89 16.735 11.5779 16.735 11.2795 16.7962C11.0147 16.8506 10.7585 16.9405 10.5177 17.0634C10.2464 17.202 10.0028 17.397 9.51547 17.7868L7.13002 19.6952C6.71393 20.028 6.50589 20.1945 6.3308 20.1947C6.17853 20.1948 6.03448 20.1256 5.93949 20.0066C5.83026 19.8698 5.83026 19.6033 5.83026 19.0705V16.735C4.90029 16.735 4.4353 16.735 4.0538 16.6328C3.01853 16.3554 2.20989 15.5467 1.93248 14.5114C1.83026 14.1299 1.83026 13.665 1.83026 12.735V6.53499Z"
+                    stroke="#464748" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg><br />
+            <span>Message</span>
+        </a>
+
+        <a class="tab-item1" href="/seller/advice">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 21 21" fill="none">
+                <path
+                    d="M10.7537 9.0459V5.5459M10.7537 12.5459H10.7637M5.75372 16.5459V18.8814C5.75372 19.4142 5.75372 19.6807 5.86295 19.8175C5.95795 19.9365 6.10199 20.0058 6.25426 20.0056C6.42935 20.0054 6.63739 19.839 7.05348 19.5061L9.43894 17.5977C9.92624 17.2079 10.1699 17.013 10.4412 16.8744C10.6819 16.7514 10.9382 16.6615 11.2029 16.6072C11.5014 16.5459 11.8134 16.5459 12.4375 16.5459H14.9537C16.6339 16.5459 17.474 16.5459 18.1157 16.2189C18.6802 15.9313 19.1391 15.4724 19.4267 14.9079C19.7537 14.2661 19.7537 13.4261 19.7537 11.7459V6.3459C19.7537 4.66574 19.7537 3.82566 19.4267 3.18393C19.1391 2.61944 18.6802 2.1605 18.1157 1.87288C17.474 1.5459 16.6339 1.5459 14.9537 1.5459H6.55372C4.87357 1.5459 4.03349 1.5459 3.39175 1.87288C2.82727 2.1605 2.36832 2.61944 2.0807 3.18393C1.75372 3.82566 1.75372 4.66574 1.75372 6.3459V12.5459C1.75372 13.4759 1.75372 13.9409 1.85595 14.3224C2.13335 15.3576 2.94199 16.1663 3.97727 16.4437C4.35877 16.5459 4.82375 16.5459 5.75372 16.5459Z"
+                    stroke="#464748" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg><br />
+            <span>Advice</span>
+        </a>
+
+        <a class="tab-item1" href="/seller/sales_payment">
+            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="18" viewBox="0 0 23 23" fill="none">
+                <path
+                    d="M13.3598 8.3167C12.7873 8.72479 12.0868 8.96484 11.3303 8.96484C9.39726 8.96484 7.83026 7.39784 7.83026 5.46484C7.83026 3.53185 9.39726 1.96484 11.3303 1.96484C12.5832 1.96484 13.6825 2.62326 14.3008 3.61299M5.83026 20.052H8.44055C8.78089 20.052 9.11914 20.0925 9.44907 20.1735L12.2072 20.8437C12.8056 20.9895 13.429 21.0037 14.0337 20.8862L17.0832 20.293C17.8888 20.136 18.6298 19.7503 19.2106 19.1853L21.3682 17.0866C21.9843 16.4882 21.9843 15.5173 21.3682 14.9179C20.8134 14.3783 19.935 14.3175 19.3074 14.7752L16.7929 16.6097C16.4327 16.8729 15.9946 17.0147 15.5439 17.0147H13.1158L14.6613 17.0146C15.5325 17.0146 16.2381 16.3282 16.2381 15.4808V15.174C16.2381 14.4703 15.7458 13.8568 15.0443 13.6867L12.6589 13.1066C12.2706 13.0124 11.8731 12.9648 11.4734 12.9648C10.5086 12.9648 8.76215 13.7637 8.76215 13.7637L5.83026 14.9897M19.8303 6.46484C19.8303 8.39784 18.2633 9.96484 16.3303 9.96484C14.3973 9.96484 12.8303 8.39784 12.8303 6.46484C12.8303 4.53185 14.3973 2.96484 16.3303 2.96484C18.2633 2.96484 19.8303 4.53185 19.8303 6.46484ZM1.83026 14.5648L1.83026 20.3648C1.83026 20.9249 1.83026 21.2049 1.93925 21.4188C2.03513 21.607 2.18811 21.76 2.37627 21.8558C2.59018 21.9648 2.87021 21.9648 3.43026 21.9648H4.23026C4.79031 21.9648 5.07034 21.9648 5.28425 21.8559C5.47241 21.76 5.62539 21.607 5.72127 21.4188C5.83026 21.2049 5.83026 20.9249 5.83026 20.3648V14.5648C5.83026 14.0048 5.83026 13.7248 5.72127 13.5109C5.62539 13.3227 5.47241 13.1697 5.28425 13.0738C5.07034 12.9648 4.79031 12.9648 4.23026 12.9648L3.43026 12.9648C2.87021 12.9648 2.59018 12.9648 2.37627 13.0738C2.18811 13.1697 2.03513 13.3227 1.93925 13.5109C1.83026 13.7248 1.83026 14.0048 1.83026 14.5648Z"
+                    stroke="#464748" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg><br />
+            <span>Sales & Payment</span>
+        </a>
+    </div>
+
+    <!-- <div
+      class="d-flex py-2"
+      style="width: 100%; border-top: 2px solid #46474836"
+    >
+      <div class="align-items-center col d-flex flex-column">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="19"
+          height="20"
+          viewBox="0 0 19 20"
+          fill="none"
+        >
+          <path
+            d="M10.9108 1.29134C10.5594 1.01809 10.3838 0.881463 10.1898 0.828944C10.0187 0.782604 9.83827 0.782604 9.66712 0.828944C9.47315 0.881463 9.29749 1.01809 8.94616 1.29134L2.16386 6.56647C1.71049 6.91909 1.4838 7.0954 1.32049 7.3162C1.17583 7.51179 1.06807 7.73213 1.00249 7.96639C0.928467 8.23086 0.928467 8.51804 0.928467 9.0924V16.3273C0.928467 17.4474 0.928467 18.0075 1.14645 18.4353C1.3382 18.8116 1.64416 19.1176 2.02049 19.3093C2.44831 19.5273 3.00836 19.5273 4.12847 19.5273H6.12847C6.40849 19.5273 6.54851 19.5273 6.65546 19.4728C6.74954 19.4249 6.82603 19.3484 6.87397 19.2543C6.92847 19.1474 6.92847 19.0074 6.92847 18.7273V12.1273C6.92847 11.5673 6.92847 11.2872 7.03746 11.0733C7.13333 10.8852 7.28631 10.7322 7.47448 10.6363C7.68839 10.5273 7.96841 10.5273 8.52847 10.5273H11.3285C11.8885 10.5273 12.1685 10.5273 12.3825 10.6363C12.5706 10.7322 12.7236 10.8852 12.8195 11.0733C12.9285 11.2872 12.9285 11.5673 12.9285 12.1273V18.7273C12.9285 19.0074 12.9285 19.1474 12.983 19.2543C13.0309 19.3484 13.1074 19.4249 13.2015 19.4728C13.3084 19.5273 13.4484 19.5273 13.7285 19.5273H15.7285C16.8486 19.5273 17.4086 19.5273 17.8364 19.3093C18.2128 19.1176 18.5187 18.8116 18.7105 18.4353C18.9285 18.0075 18.9285 17.4474 18.9285 16.3273V9.0924C18.9285 8.51804 18.9285 8.23086 18.8544 7.96639C18.7889 7.73213 18.6811 7.51179 18.5364 7.3162C18.3731 7.0954 18.1464 6.91909 17.6931 6.56647L10.9108 1.29134Z"
+            fill="#3BB44A"
+          />
+        </svg>
+        <span class="mt-1" style="font-size: 13px">Home</span>
+      </div>
+      <div class="align-items-center col d-flex flex-column">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="23"
+          viewBox="0 0 22 23"
+          fill="none"
+        >
+          <path
+            d="M15.0909 8.16089V5.16089C15.0909 2.95175 13.3001 1.16089 11.0909 1.16089C8.88181 1.16089 7.09095 2.95175 7.09095 5.16089V8.16089M2.68295 9.51285L2.08295 15.9129C1.91235 17.7326 1.82705 18.6424 2.129 19.3452C2.39424 19.9625 2.85906 20.473 3.44896 20.7947C4.12047 21.1609 5.03431 21.1609 6.86199 21.1609H15.3199C17.1476 21.1609 18.0614 21.1609 18.7329 20.7947C19.3228 20.473 19.7876 19.9625 20.0529 19.3452C20.3548 18.6424 20.2695 17.7326 20.0989 15.9129L19.4989 9.51285C19.3549 7.97624 19.2829 7.20793 18.9373 6.62705C18.6329 6.11547 18.1833 5.706 17.6455 5.45073C17.0349 5.16089 16.2633 5.16089 14.7199 5.16089L7.46199 5.16089C5.91864 5.16089 5.14696 5.16089 4.53636 5.45073C3.99861 5.706 3.54895 6.11547 3.24461 6.62705C2.89904 7.20792 2.82701 7.97623 2.68295 9.51285Z"
+            stroke="#464748"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span class="mt-1" style="font-size: 13px">Product</span>
+      </div>
+      <div class="align-items-center col d-flex flex-column">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="21"
+          height="22"
+          viewBox="0 0 21 22"
+          fill="none"
+        >
+          <path
+            d="M1.06714 6.73091C1.06714 5.05075 1.06714 4.21067 1.39412 3.56894C1.68174 3.00445 2.14068 2.54551 2.70517 2.25789C3.3469 1.93091 4.18698 1.93091 5.86714 1.93091H14.2671C15.9473 1.93091 16.7874 1.93091 17.4291 2.25789C17.9936 2.54551 18.4525 3.00445 18.7402 3.56894C19.0671 4.21067 19.0671 5.05075 19.0671 6.73091V12.1309C19.0671 13.8111 19.0671 14.6511 18.7402 15.2929C18.4525 15.8574 17.9936 16.3163 17.4291 16.6039C16.7874 16.9309 15.9473 16.9309 14.2671 16.9309H11.7509C11.1268 16.9309 10.8148 16.9309 10.5164 16.9922C10.2516 17.0465 9.99534 17.1364 9.75463 17.2594C9.48331 17.398 9.23966 17.5929 8.75235 17.9827L6.3669 19.8911C5.95081 20.224 5.74277 20.3904 5.56768 20.3906C5.41541 20.3908 5.27136 20.3215 5.17637 20.2025C5.06714 20.0657 5.06714 19.7993 5.06714 19.2664V16.9309C4.13717 16.9309 3.67218 16.9309 3.29068 16.8287C2.25541 16.5513 1.44676 15.7426 1.16936 14.7074C1.06714 14.3259 1.06714 13.8609 1.06714 12.9309V6.73091Z"
+            stroke="#464748"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span class="mt-1" style="font-size: 13px">Message</span>
+      </div>
+      <div class="align-items-center col d-flex flex-column">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="21"
+          height="22"
+          viewBox="0 0 21 22"
+          fill="none"
+        >
+          <path
+            d="M10.4791 9.43091V5.93091M10.4791 12.9309H10.4891M5.47913 16.9309V19.2664C5.47913 19.7993 5.47913 20.0657 5.58835 20.2025C5.68335 20.3215 5.8274 20.3908 5.97967 20.3906C6.15475 20.3904 6.3628 20.224 6.77888 19.8911L9.16434 17.9827C9.65164 17.5929 9.8953 17.398 10.1666 17.2594C10.4073 17.1364 10.6636 17.0465 10.9283 16.9922C11.2268 16.9309 11.5388 16.9309 12.1629 16.9309H14.6791C16.3593 16.9309 17.1994 16.9309 17.8411 16.6039C18.4056 16.3163 18.8645 15.8574 19.1521 15.2929C19.4791 14.6511 19.4791 13.8111 19.4791 12.1309V6.73091C19.4791 5.05075 19.4791 4.21067 19.1521 3.56894C18.8645 3.00445 18.4056 2.54551 17.8411 2.25789C17.1994 1.93091 16.3593 1.93091 14.6791 1.93091H6.27913C4.59897 1.93091 3.75889 1.93091 3.11715 2.25789C2.55267 2.54551 2.09373 3.00445 1.80611 3.56894C1.47913 4.21067 1.47913 5.05075 1.47913 6.73091V12.9309C1.47913 13.8609 1.47913 14.3259 1.58135 14.7074C1.85875 15.7426 2.66739 16.5513 3.70267 16.8287C4.08417 16.9309 4.54915 16.9309 5.47913 16.9309Z"
+            stroke="#464748"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span class="mt-1" style="font-size: 13px">Advice</span>
+      </div>
+      <div class="align-items-center col d-flex flex-column">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="23"
+          height="23"
+          viewBox="0 0 23 23"
+          fill="none"
+        >
+          <path
+            d="M12.9538 7.51275C12.3814 7.92084 11.6809 8.16089 10.9243 8.16089C8.99132 8.16089 7.42432 6.59389 7.42432 4.66089C7.42432 2.72789 8.99132 1.16089 10.9243 1.16089C12.1773 1.16089 13.2765 1.81931 13.8948 2.80903M5.42432 19.248H8.03461C8.37494 19.248 8.7132 19.2885 9.04313 19.3695L11.8012 20.0398C12.3997 20.1856 13.0231 20.1997 13.6278 20.0823L16.6773 19.489C17.4829 19.3321 18.2239 18.9463 18.8047 18.3814L20.9622 16.2826C21.5784 15.6842 21.5784 14.7133 20.9622 14.114C20.4075 13.5743 19.529 13.5136 18.9014 13.9712L16.3869 15.8057C16.0268 16.069 15.5886 16.2107 15.138 16.2107H12.7098L14.2554 16.2107C15.1265 16.2107 15.8322 15.5242 15.8322 14.6768V14.37C15.8322 13.6664 15.3399 13.0528 14.6384 12.8828L12.2529 12.3026C11.8647 12.2085 11.4671 12.1609 11.0675 12.1609C10.1026 12.1609 8.35621 12.9597 8.35621 12.9597L5.42432 14.1858M19.4243 5.66089C19.4243 7.59389 17.8573 9.16089 15.9243 9.16089C13.9913 9.16089 12.4243 7.59389 12.4243 5.66089C12.4243 3.72789 13.9913 2.16089 15.9243 2.16089C17.8573 2.16089 19.4243 3.72789 19.4243 5.66089ZM1.42432 13.7609L1.42432 19.5609C1.42432 20.1209 1.42432 20.401 1.53331 20.6149C1.62918 20.803 1.78216 20.956 1.97033 21.0519C2.18424 21.1609 2.46426 21.1609 3.02432 21.1609H3.82432C4.38437 21.1609 4.66439 21.1609 4.87831 21.0519C5.06647 20.956 5.21945 20.803 5.31532 20.6149C5.42432 20.401 5.42432 20.1209 5.42432 19.5609V13.7609C5.42432 13.2008 5.42432 12.9208 5.31532 12.7069C5.21945 12.5187 5.06647 12.3658 4.87831 12.2699C4.6644 12.1609 4.38437 12.1609 3.82432 12.1609L3.02432 12.1609C2.46426 12.1609 2.18424 12.1609 1.97033 12.2699C1.78216 12.3658 1.62918 12.5187 1.53331 12.7069C1.42432 12.9208 1.42432 13.2008 1.42432 13.7609Z"
+            stroke="#464748"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span class="mt-1" style="font-size: 13px">Sales & Payment</span>
+      </div>
+    </div> -->
+
+    <!-- JavaScript files -->
+    <script src="../../front_assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../../front_assets/js/jquery.min.js"></script>
+    <script src="../../front_assets/plugins/slick/slick.min.js"></script>
+    <script src="../../front_assets/js/main.js"></script>
+    <script src="../../front_assets/js/index.js"></script>
+    <script src="../../front_assets/js/loader.js"></script>
+    <!-- <script>
+    const inputFile = document.querySelector("#picture__input");
+    const pictureImage = document.querySelector(".picture__image");
+
+    inputFile.addEventListener("change", function (e) {
+      const inputTarget = e.target;
+      const file = inputTarget.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.addEventListener("load", function (e) {
+          const readerTarget = e.target;
+
+          const img = document.createElement("img");
+          img.src = readerTarget.result;
+          img.classList.add("picture__img");
+
+          pictureImage.innerHTML = "";
+          pictureImage.appendChild(img);
+        });
+
+        reader.readAsDataURL(file);
+      } else {
+        pictureImage.innerHTML = pictureImageTxt;
+      }
+    });
+
+  </script> -->
+</body>
+
+</html>

@@ -48,49 +48,66 @@ $(function () {
 
 
   });
+
+
+  // changed code 
   $(document).ready(function () {
-    $('.product-thumbs').slick({
+    $(".product-thumbs").slick({
       dots: false,
       arrows: true,
       infinite: true,
       speed: 300,
-      slidesToShow: 4,
+      slidesToShow: 6,
       slidesToScroll: 1,
       autoplay: true,
-      prevArrow: "<button type='button' class='slick-prev pull-left'><i class='bi bi-chevron-left'></i></button>",
-      nextArrow: "<button type='button' class='slick-next pull-right'><i class='bi bi-chevron-right'></i></button>",
+      prevArrow:
+        "<button type='button' class='slick-prev pull-left'><i class='bi bi-chevron-left'></i></button>",
+      nextArrow:
+        "<button type='button' class='slick-next pull-right'><i class='bi bi-chevron-right'></i></button>",
       responsive: [
+        {
+          breakpoint: 1399,
+          settings: {
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            infinite: true,
+          },
+        },
+        {
+          breakpoint: 1199,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            infinite: true,
+          },
+        },
         {
           breakpoint: 1025,
           settings: {
-            slidesToShow: 3,
+            slidesToShow: 4,
             slidesToScroll: 1,
             infinite: true,
-          }
+          },
         },
         {
-          breakpoint: 600,
+          breakpoint: 783,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            // dots:true 
+            infinite: true,
+          },
+        },
+        {
+          breakpoint: 604,
           settings: {
             slidesToShow: 2,
             slidesToScroll: 1,
-            // dots:true
-            infinite: true,
-          }
+          },
         },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1
-          }
-        }
-      ]
+      ],
     });
-
-
-  });
-
-
+  })
   $('.yellow').slick({
     dots: true,
     infinite: true,
