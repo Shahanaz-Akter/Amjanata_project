@@ -10,8 +10,11 @@
 
     <!-- CSS files -->
     <link href="../../front_assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
     <!-- Plugins -->
@@ -21,43 +24,60 @@
     <link href="../../front_assets/css/style.css" rel="stylesheet" />
     <link href="../../front_assets/css/dark-theme.css" rel="stylesheet" />
 
-    <link href="https://unpkg.com/singledivui/dist/singledivui.min.css" rel="stylesheet" />
-    <script src="https://unpkg.com/singledivui/dist/singledivui.min.js"></script>
-
-    <title>Seller Product Upload</title>
+    <title>Product Upload Panel</title>
 
     <style>
-        table {
-            border-collapse: collapse;
-            /* border: 2px solid rgb(200, 200, 200); */
-            letter-spacing: 1px;
-            font-size: 0.8rem;
-            width: 100%;
-            text-align: center;
-        }
-
-        td {
-            /* border: 1px solid rgb(190, 190, 190); */
-            padding: 10px 20px;
-            background-color: #9acba070;
+        .tab {
+            display: flex;
+            justify-content: space-around;
+            background-color: #fff;
             color: black;
+            padding: 12px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
 
-        th {
-            background-color: #464748;
-            color: #fff;
+        #Product_img {
+            display: none;
         }
 
-        table th:first-child {
-            border-top-left-radius: 10px;
+        .picture {
+            /* width: 400px; */
+            aspect-ratio: 16/9;
+            background: #f9fff9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            border: 2px dashed #3bb44a;
+            cursor: pointer;
+            font-family: sans-serif;
+            transition: color 300ms ease-in-out, background 300ms ease-in-out;
+            outline: none;
+            overflow: hidden;
+            border-radius: 10px;
         }
 
-        table th:last-child {
-            border-top-right-radius: 10px;
+        .picture:hover {
+            color: #777;
+            background: #f9fff9;
         }
 
-        caption {
-            padding: 10px;
+        .picture:active {
+            border-color: turquoise;
+            color: turquoise;
+            background: #eee;
+        }
+
+        .picture:focus {
+            color: #f9fff9;
+            /* background: #F9FFF9; */
+            box-shadow: 0 0 10px rgba(92, 248, 95, 0.525);
+        }
+
+        .picture__img {
+            max-width: 100%;
         }
 
         /* sidebar css  */
@@ -120,13 +140,14 @@
     </style>
 </head>
 
-<body>
+<body class="position-relative" style="height: 100vh">
     <!--start top header-->
     <header class="top-header">
         <nav class="navbar navbar-expand-md w-100 navbar-dark container gap-3">
             <h3 class="fw-bold ms-2 mt-1" style="margin-bottom: 0px; padding: 5px; cursor: pointer" id="threeBar">
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="15" viewBox="0 0 21 15" fill="none">
-                    <path d="M1.72997 7.60657H19.73M1.72997 1.60657H19.73M1.72997 13.6066H19.73" stroke="#464748" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M1.72997 7.60657H19.73M1.72997 1.60657H19.73M1.72997 13.6066H19.73" stroke="#464748"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </h3>
             <ul class="navbar-nav secondary-menu flex-row">
@@ -145,9 +166,12 @@
                 <li class="nav-item">
                     <a class="nav-link position-relative" href="cart.html">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                            <path d="M10.0919 10.5768C12.5772 10.5768 14.5919 8.56206 14.5919 6.07678C14.5919 3.5915 12.5772 1.57678 10.0919 1.57678C7.60664 1.57678 5.59192 3.5915 5.59192 6.07678C5.59192 8.56206 7.60664 10.5768 10.0919 10.5768Z" stroke="#464748" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M6.10156 13.7401C1.98095 13.6858 1.58329 17.6483 1.89954 19.6364H18.3685C18.3685 17.8139 18.5025 13.9351 14.3714 13.7401H6.10156Z" stroke="#464748" stroke-width="2" />
+                            <path
+                                d="M10.0919 10.5768C12.5772 10.5768 14.5919 8.56206 14.5919 6.07678C14.5919 3.5915 12.5772 1.57678 10.0919 1.57678C7.60664 1.57678 5.59192 3.5915 5.59192 6.07678C5.59192 8.56206 7.60664 10.5768 10.0919 10.5768Z"
+                                stroke="#464748" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M6.10156 13.7401C1.98095 13.6858 1.58329 17.6483 1.89954 19.6364H18.3685C18.3685 17.8139 18.5025 13.9351 14.3714 13.7401H6.10156Z"
+                                stroke="#464748" stroke-width="2" />
                         </svg>
                     </a>
                 </li>
@@ -193,125 +217,60 @@
 
     <!--end top header-->
 
-    <div class="mx-3" style="margin-bottom: 130px">
-        <div class="my-3">
-            <a href="/seller/upload" class="btn w-100 p-2 mt-3 btn text-light" style="background-color: #3bb44a">
-                ADD PRODUCT
-            </a>
-        </div>
+    <div class="mx-3" style="margin-top: 6rem; padding-bottom: 9rem">
+        <h3 class="text-center">UPLOAD PRODUCT</h3>
+        <p>Upload photo or video to share your product</p>
 
-        <table class="mt-4">
-            <tr>
-                <th>
-                    Gross <br />
-                    Products
-                </th>
-                <th class="">
-                    Sold <br />
-                    Item
-                </th>
-            </tr>
-            <tr>
-                <td style="
-              border-right: 1px solid rgb(190, 190, 190);
-              border-bottom-left-radius: 10px;
-            ">
-                    12
-                </td>
-                <td style="border-bottom-right-radius: 10px">08</td>
-            </tr>
-        </table>
-        <div>
-            <style>
-                body .cell {
-                    padding: 0px 0px 0px 30px;
-                }
 
-                .sd-bar {
-                    --bar: linear-gradient(#9acba0 100%, transparent);
-                    border-bottom-left-radius: 10px;
-                    border-color: #9acba0;
-                }
+        <form class="form" action="/seller/post_product_upload" enctype="multipart/form-data" method='post'>
 
-                .sd-graph {
-                    --_x-grid-line-color: #9acba0;
-                    --_y-grid-line-color: #9acba0;
-                }
-            </style>
+            <label class="picture" for="Product_img" tabIndex="0">
+                <span class="picture__image"><svg xmlns="http://www.w3.org/2000/svg" width="139" height="140"
+                        viewBox="0 0 139 140" fill="none">
+                        <path
+                            d="M101.467 138.817H30.9221C26.3112 138.817 24.0057 138.817 22.9381 137.905C22.0118 137.114 21.5202 135.927 21.6158 134.713C21.726 133.313 23.3562 131.683 26.6166 128.422L91.3335 63.7054C94.3475 60.6913 95.8547 59.1842 97.5925 58.6196C99.1211 58.1229 100.768 58.1229 102.296 58.6196C104.034 59.1842 105.541 60.6913 108.555 63.7054L134.251 89.401C135.635 90.7846 136.326 91.4764 136.821 92.2837C137.26 92.9995 137.583 93.7798 137.779 94.5961C138 95.5168 138 96.4952 138 98.4519V102.283M101.467 138.817C114.255 138.817 120.648 138.817 125.533 136.328C129.829 134.139 133.322 130.646 135.511 126.349C138 121.465 138 115.071 138 102.283M101.467 138.817H37.5333C24.7455 138.817 18.3515 138.817 13.4672 136.328C9.17085 134.139 5.67779 130.646 3.48868 126.349C1 121.465 1 115.071 1 102.283V38.35C1 25.5621 1 19.1682 3.48868 14.2839C5.67779 9.9875 9.17085 6.49444 13.4672 4.30533C18.3515 1.81665 24.7455 1.81665 37.5333 1.81665H101.467C114.255 1.81665 120.648 1.81665 125.533 4.30533C129.829 6.49444 133.322 9.9875 135.511 14.2839C138 19.1682 138 25.5621 138 38.35V102.283M58.0833 43.6778C58.0833 52.0848 51.2681 58.9 42.8611 58.9C34.4541 58.9 27.6389 52.0848 27.6389 43.6778C27.6389 35.2708 34.4541 28.4555 42.8611 28.4555C51.2681 28.4555 58.0833 35.2708 58.0833 43.6778Z"
+                            stroke="#464748" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg></span>
+            </label>
 
-            <h2 class="mb-4 mt-5 text-center">Sales Details</h2>
-            <div class="cell mb-5">
-                <div id="chart2"></div>
+            <input type="file" name="product_img" id="Product_img" multiple/>
+
+            <label class="mt-3" for="product_name">Product Name:</label> <br />
+            <input style="width: 100%" class="rounded border" type="text" id="product_name" name="product_name"
+                autocomplete="off" placeholder="Product" value="" />
+            <br />
+            <label class="mt-3" for="selling_price">Selling Price:</label> <br />
+            <input style="width: 100%" class="rounded border" type="number" id="selling_price" name="selling_price"
+                autocomplete="off" placeholder="BDT 200" value="" required />
+            <br />
+            <label class="mt-3" for="discount">Discount:</label> <br />
+            <input style="width: 100%" class="rounded border" type="number" id="discount" name="discount"
+                autocomplete="off" placeholder="Product" value="" />
+            <br />
+
+            <label class="mt-3" for="category">Category</label> <br />
+            <input style="width: 100%" class="rounded border" type="text" id="category" name="category"
+                autocomplete="off" placeholder="Category" value="" />
+            <br />
+            <label class="mt-3" for="stock">Stock</label> <br />
+            <input style="width: 100%" class="rounded border" type="number" id="stock" name="stock" autocomplete="off"
+                placeholder="Stock" value="" />
+            <label class="mt-3" for="description">Description</label> <br />
+            <textarea style="width: 100%; padding: 10px" class="rounded border" id="description" name="description"
+                placeholder="Description" cols="10" rows="5"></textarea>
+
+            <div>
+                <button type="submit" class="w-100 p-2 mt-3 btn text-light" style="background-color: #3bb44a">
+                    Upload
+                </button>
             </div>
+        </form>
 
-            <script>
-                const { Chart } = SingleDivUI;
 
-                const options = {
-                    data: {
-                        labels: ["1", "2", "3", "4"],
-                        series: {
-                            points: [15, 9, 25, 18],
-                        },
-                    },
-                    height: 200,
-                    width: "100%",
-                    barColors: "#9ACBA0",
-                };
 
-                new Chart("#chart2", {
-                    type: "bar",
-                    ...options,
-                });
-            </script>
-        </div>
-
-        <div class="d-flex rounded mt-3 p-2" style="
-          background-color: #f9fff9;
-          box-shadow: 0 10px 16px 0 #d1edd5, 0 6px 20px 0 #d1edd5;
-        ">
-            <img src="../../front_assets/img/advice/Icon (1).png" style="height: 100px" />
-            <div class="ps-3">
-                <h3 style="margin-bottom: 0px">Product Name</h3>
-                <p style="margin-bottom: 0px">Price:</p>
-                <p style="margin-bottom: 0px">Product Id:</p>
-                <p style="margin-bottom: 0px">User Id:</p>
-                <p style="margin-bottom: 0px">Address:</p>
-                <p style="margin-bottom: 0px">Order Date:</p>
-            </div>
-        </div>
-        <div class="d-flex rounded mt-3 p-2" style="
-          background-color: #f9fff9;
-          box-shadow: 0 10px 16px 0 #d1edd5, 0 6px 20px 0 #d1edd5;
-        ">
-            <img src="../../front_assets/img/advice/Icon (1).png" style="height: 100px" />
-            <div class="ps-3">
-                <h3 style="margin-bottom: 0px">Product Name</h3>
-                <p style="margin-bottom: 0px">Price:</p>
-                <p style="margin-bottom: 0px">Product Id:</p>
-                <p style="margin-bottom: 0px">User Id:</p>
-                <p style="margin-bottom: 0px">Address:</p>
-                <p style="margin-bottom: 0px">Order Date:</p>
-            </div>
-        </div>
-        <div class="d-flex rounded mt-3 p-2" style="
-          background-color: #f9fff9;
-          box-shadow: 0 10px 16px 0 #d1edd5, 0 6px 20px 0 #d1edd5;
-        ">
-            <img src="../../front_assets/img/advice/Icon (1).png" style="height: 100px" />
-            <div class="ps-3">
-                <h3 style="margin-bottom: 0px">Product Name</h3>
-                <p style="margin-bottom: 0px">Price:</p>
-                <p style="margin-bottom: 0px">Product Id:</p>
-                <p style="margin-bottom: 0px">User Id:</p>
-                <p style="margin-bottom: 0px">Address:</p>
-                <p style="margin-bottom: 0px">Order Date:</p>
-            </div>
-        </div>
     </div>
 
     <!-- Footer  -->
-
     <div class="tab shadow-lg">
         <a class="tab-item1" href="/seller/app_home">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="none">
@@ -359,137 +318,48 @@
         </a>
     </div>
 
-    <!-- <div
-      class="d-flex py-2"
-      style="width: 100%; border-top: 2px solid #46474836"
-    >
-      <div class="align-items-center col d-flex flex-column">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="19"
-          height="20"
-          viewBox="0 0 19 20"
-          fill="none"
-        >
-          <path
-            d="M10.9108 1.29134C10.5594 1.01809 10.3838 0.881463 10.1898 0.828944C10.0187 0.782604 9.83827 0.782604 9.66712 0.828944C9.47315 0.881463 9.29749 1.01809 8.94616 1.29134L2.16386 6.56647C1.71049 6.91909 1.4838 7.0954 1.32049 7.3162C1.17583 7.51179 1.06807 7.73213 1.00249 7.96639C0.928467 8.23086 0.928467 8.51804 0.928467 9.0924V16.3273C0.928467 17.4474 0.928467 18.0075 1.14645 18.4353C1.3382 18.8116 1.64416 19.1176 2.02049 19.3093C2.44831 19.5273 3.00836 19.5273 4.12847 19.5273H6.12847C6.40849 19.5273 6.54851 19.5273 6.65546 19.4728C6.74954 19.4249 6.82603 19.3484 6.87397 19.2543C6.92847 19.1474 6.92847 19.0074 6.92847 18.7273V12.1273C6.92847 11.5673 6.92847 11.2872 7.03746 11.0733C7.13333 10.8852 7.28631 10.7322 7.47448 10.6363C7.68839 10.5273 7.96841 10.5273 8.52847 10.5273H11.3285C11.8885 10.5273 12.1685 10.5273 12.3825 10.6363C12.5706 10.7322 12.7236 10.8852 12.8195 11.0733C12.9285 11.2872 12.9285 11.5673 12.9285 12.1273V18.7273C12.9285 19.0074 12.9285 19.1474 12.983 19.2543C13.0309 19.3484 13.1074 19.4249 13.2015 19.4728C13.3084 19.5273 13.4484 19.5273 13.7285 19.5273H15.7285C16.8486 19.5273 17.4086 19.5273 17.8364 19.3093C18.2128 19.1176 18.5187 18.8116 18.7105 18.4353C18.9285 18.0075 18.9285 17.4474 18.9285 16.3273V9.0924C18.9285 8.51804 18.9285 8.23086 18.8544 7.96639C18.7889 7.73213 18.6811 7.51179 18.5364 7.3162C18.3731 7.0954 18.1464 6.91909 17.6931 6.56647L10.9108 1.29134Z"
-            fill="#3BB44A"
-          />
-        </svg>
-        <span class="mt-1" style="font-size: 13px">Home</span>
-      </div>
-      <div class="align-items-center col d-flex flex-column">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="22"
-          height="23"
-          viewBox="0 0 22 23"
-          fill="none"
-        >
-          <path
-            d="M15.0909 8.16089V5.16089C15.0909 2.95175 13.3001 1.16089 11.0909 1.16089C8.88181 1.16089 7.09095 2.95175 7.09095 5.16089V8.16089M2.68295 9.51285L2.08295 15.9129C1.91235 17.7326 1.82705 18.6424 2.129 19.3452C2.39424 19.9625 2.85906 20.473 3.44896 20.7947C4.12047 21.1609 5.03431 21.1609 6.86199 21.1609H15.3199C17.1476 21.1609 18.0614 21.1609 18.7329 20.7947C19.3228 20.473 19.7876 19.9625 20.0529 19.3452C20.3548 18.6424 20.2695 17.7326 20.0989 15.9129L19.4989 9.51285C19.3549 7.97624 19.2829 7.20793 18.9373 6.62705C18.6329 6.11547 18.1833 5.706 17.6455 5.45073C17.0349 5.16089 16.2633 5.16089 14.7199 5.16089L7.46199 5.16089C5.91864 5.16089 5.14696 5.16089 4.53636 5.45073C3.99861 5.706 3.54895 6.11547 3.24461 6.62705C2.89904 7.20792 2.82701 7.97623 2.68295 9.51285Z"
-            stroke="#464748"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <span class="mt-1" style="font-size: 13px">Product</span>
-      </div>
-      <div class="align-items-center col d-flex flex-column">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="21"
-          height="22"
-          viewBox="0 0 21 22"
-          fill="none"
-        >
-          <path
-            d="M1.06714 6.73091C1.06714 5.05075 1.06714 4.21067 1.39412 3.56894C1.68174 3.00445 2.14068 2.54551 2.70517 2.25789C3.3469 1.93091 4.18698 1.93091 5.86714 1.93091H14.2671C15.9473 1.93091 16.7874 1.93091 17.4291 2.25789C17.9936 2.54551 18.4525 3.00445 18.7402 3.56894C19.0671 4.21067 19.0671 5.05075 19.0671 6.73091V12.1309C19.0671 13.8111 19.0671 14.6511 18.7402 15.2929C18.4525 15.8574 17.9936 16.3163 17.4291 16.6039C16.7874 16.9309 15.9473 16.9309 14.2671 16.9309H11.7509C11.1268 16.9309 10.8148 16.9309 10.5164 16.9922C10.2516 17.0465 9.99534 17.1364 9.75463 17.2594C9.48331 17.398 9.23966 17.5929 8.75235 17.9827L6.3669 19.8911C5.95081 20.224 5.74277 20.3904 5.56768 20.3906C5.41541 20.3908 5.27136 20.3215 5.17637 20.2025C5.06714 20.0657 5.06714 19.7993 5.06714 19.2664V16.9309C4.13717 16.9309 3.67218 16.9309 3.29068 16.8287C2.25541 16.5513 1.44676 15.7426 1.16936 14.7074C1.06714 14.3259 1.06714 13.8609 1.06714 12.9309V6.73091Z"
-            stroke="#464748"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <span class="mt-1" style="font-size: 13px">Message</span>
-      </div>
-      <div class="align-items-center col d-flex flex-column">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="21"
-          height="22"
-          viewBox="0 0 21 22"
-          fill="none"
-        >
-          <path
-            d="M10.4791 9.43091V5.93091M10.4791 12.9309H10.4891M5.47913 16.9309V19.2664C5.47913 19.7993 5.47913 20.0657 5.58835 20.2025C5.68335 20.3215 5.8274 20.3908 5.97967 20.3906C6.15475 20.3904 6.3628 20.224 6.77888 19.8911L9.16434 17.9827C9.65164 17.5929 9.8953 17.398 10.1666 17.2594C10.4073 17.1364 10.6636 17.0465 10.9283 16.9922C11.2268 16.9309 11.5388 16.9309 12.1629 16.9309H14.6791C16.3593 16.9309 17.1994 16.9309 17.8411 16.6039C18.4056 16.3163 18.8645 15.8574 19.1521 15.2929C19.4791 14.6511 19.4791 13.8111 19.4791 12.1309V6.73091C19.4791 5.05075 19.4791 4.21067 19.1521 3.56894C18.8645 3.00445 18.4056 2.54551 17.8411 2.25789C17.1994 1.93091 16.3593 1.93091 14.6791 1.93091H6.27913C4.59897 1.93091 3.75889 1.93091 3.11715 2.25789C2.55267 2.54551 2.09373 3.00445 1.80611 3.56894C1.47913 4.21067 1.47913 5.05075 1.47913 6.73091V12.9309C1.47913 13.8609 1.47913 14.3259 1.58135 14.7074C1.85875 15.7426 2.66739 16.5513 3.70267 16.8287C4.08417 16.9309 4.54915 16.9309 5.47913 16.9309Z"
-            stroke="#464748"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <span class="mt-1" style="font-size: 13px">Advice</span>
-      </div>
-      <div class="align-items-center col d-flex flex-column">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="23"
-          height="23"
-          viewBox="0 0 23 23"
-          fill="none"
-        >
-          <path
-            d="M12.9538 7.51275C12.3814 7.92084 11.6809 8.16089 10.9243 8.16089C8.99132 8.16089 7.42432 6.59389 7.42432 4.66089C7.42432 2.72789 8.99132 1.16089 10.9243 1.16089C12.1773 1.16089 13.2765 1.81931 13.8948 2.80903M5.42432 19.248H8.03461C8.37494 19.248 8.7132 19.2885 9.04313 19.3695L11.8012 20.0398C12.3997 20.1856 13.0231 20.1997 13.6278 20.0823L16.6773 19.489C17.4829 19.3321 18.2239 18.9463 18.8047 18.3814L20.9622 16.2826C21.5784 15.6842 21.5784 14.7133 20.9622 14.114C20.4075 13.5743 19.529 13.5136 18.9014 13.9712L16.3869 15.8057C16.0268 16.069 15.5886 16.2107 15.138 16.2107H12.7098L14.2554 16.2107C15.1265 16.2107 15.8322 15.5242 15.8322 14.6768V14.37C15.8322 13.6664 15.3399 13.0528 14.6384 12.8828L12.2529 12.3026C11.8647 12.2085 11.4671 12.1609 11.0675 12.1609C10.1026 12.1609 8.35621 12.9597 8.35621 12.9597L5.42432 14.1858M19.4243 5.66089C19.4243 7.59389 17.8573 9.16089 15.9243 9.16089C13.9913 9.16089 12.4243 7.59389 12.4243 5.66089C12.4243 3.72789 13.9913 2.16089 15.9243 2.16089C17.8573 2.16089 19.4243 3.72789 19.4243 5.66089ZM1.42432 13.7609L1.42432 19.5609C1.42432 20.1209 1.42432 20.401 1.53331 20.6149C1.62918 20.803 1.78216 20.956 1.97033 21.0519C2.18424 21.1609 2.46426 21.1609 3.02432 21.1609H3.82432C4.38437 21.1609 4.66439 21.1609 4.87831 21.0519C5.06647 20.956 5.21945 20.803 5.31532 20.6149C5.42432 20.401 5.42432 20.1209 5.42432 19.5609V13.7609C5.42432 13.2008 5.42432 12.9208 5.31532 12.7069C5.21945 12.5187 5.06647 12.3658 4.87831 12.2699C4.6644 12.1609 4.38437 12.1609 3.82432 12.1609L3.02432 12.1609C2.46426 12.1609 2.18424 12.1609 1.97033 12.2699C1.78216 12.3658 1.62918 12.5187 1.53331 12.7069C1.42432 12.9208 1.42432 13.2008 1.42432 13.7609Z"
-            stroke="#464748"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <span class="mt-1" style="font-size: 13px">Sales & Payment</span>
-      </div>
-    </div> -->
-
     <!-- JavaScript files -->
     <script src="../../front_assets/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"
+        integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../../front_assets/js/jquery.min.js"></script>
     <script src="../../front_assets/plugins/slick/slick.min.js"></script>
     <script src="../../front_assets/js/main.js"></script>
     <script src="../../front_assets/js/index.js"></script>
     <script src="../../front_assets/js/loader.js"></script>
-    <!-- <script>
-    const inputFile = document.querySelector("#picture__input");
-    const pictureImage = document.querySelector(".picture__image");
+    <script>
+        const inputFile = document.querySelector("#Product_img");
+        const pictureImage = document.querySelector(".picture__image");
 
-    inputFile.addEventListener("change", function (e) {
-      const inputTarget = e.target;
-      const file = inputTarget.files[0];
+        inputFile.addEventListener("change", function (e) {
+            const inputTarget = e.target;
+            const file = inputTarget.files[0];
 
-      if (file) {
-        const reader = new FileReader();
+            if (file) {
+                const reader = new FileReader();
 
-        reader.addEventListener("load", function (e) {
-          const readerTarget = e.target;
+                reader.addEventListener("load", function (e) {
+                    const readerTarget = e.target;
 
-          const img = document.createElement("img");
-          img.src = readerTarget.result;
-          img.classList.add("picture__img");
+                    const img = document.createElement("img");
+                    img.src = readerTarget.result;
+                    img.classList.add("picture__img");
 
-          pictureImage.innerHTML = "";
-          pictureImage.appendChild(img);
+                    pictureImage.innerHTML = "";
+                    pictureImage.appendChild(img);
+                });
+
+                reader.readAsDataURL(file);
+            } else {
+                pictureImage.innerHTML = pictureImageTxt;
+            }
         });
+    </script>
 
-        reader.readAsDataURL(file);
-      } else {
-        pictureImage.innerHTML = pictureImageTxt;
-      }
-    });
-
-  </script> -->
 </body>
 
 </html>

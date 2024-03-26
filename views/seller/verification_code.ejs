@@ -49,18 +49,18 @@
 </head>
 
 <body>
-    <form action="/seller/post_verification_code/<%=seller_id%>" class="container text-center">
+    <form action="/seller/post_verification_code/<%=seller_id%>" method="post" class="container text-center">
         <h4 class="text-center mb-4">VERIFICATION CODE</h4>
         <p>A 4 digit code has been sent
-            to +8801*********</p>
+            to +88 <%=phn%>********* </p>
         <div class="d-flex mb-3">
-            <input style="border: 1px solid #7BB882;" type="tel" maxlength="1" pattern="[0-9]" class="form-control">
-            <input style="border: 1px solid #7BB882;" type="tel" maxlength="1" pattern="[0-9]" class="form-control">
-            <input style="border: 1px solid #7BB882;" type="tel" maxlength="1" pattern="[0-9]" class="form-control">
-            <input style="border: 1px solid #7BB882;" type="tel" maxlength="1" pattern="[0-9]" class="form-control">
+            <input style="border: 1px solid #7BB882;" type="tel" maxlength="1" pattern="[0-9]" class="form-control" name="num1">
+            <input style="border: 1px solid #7BB882;" type="tel" maxlength="1" pattern="[0-9]" class="form-control" name="num2">
+            <input style="border: 1px solid #7BB882;" type="tel" maxlength="1" pattern="[0-9]" class="form-control" name="num3">
+            <input style="border: 1px solid #7BB882;" type="tel" maxlength="1" pattern="[0-9]" class="form-control" name="num4"> 
         </div>
-        <p>Didn't receive the code? <span class="fw-bold" style="color: #3BB44A
-            ;">RESEND</span></p>
+        <a href="/seller/resend/<%=seller_id%>">Didn't receive the code? <span class="fw-bold" style="color: #3BB44A
+            ;">RESEND</span></a>
         <div>
             <button type="submit" class="w-75 p-2 mt-3 btn text-light" style="background-color: #3BB44A
             ;">Verify</button>

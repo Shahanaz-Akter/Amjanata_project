@@ -10,8 +10,11 @@
 
     <!-- CSS files -->
     <link href="../../front_assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
     <!-- Plugins -->
@@ -21,49 +24,54 @@
     <link href="../../front_assets/css/style.css" rel="stylesheet" />
     <link href="../../front_assets/css/dark-theme.css" rel="stylesheet" />
 
-    <title>Seller App Home</title>
+    <link href="https://unpkg.com/singledivui/dist/singledivui.min.css" rel="stylesheet" />
+    <script src="https://unpkg.com/singledivui/dist/singledivui.min.js"></script>
+
+    <title>Seller Product Upload</title>
 
     <style>
-        #picture__input {
-            display: none;
-        }
-
-        .picture {
-            /* width: 400px; */
-            aspect-ratio: 16/9;
-            background: #f9fff9;
+        .tab {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #aaa;
-            border: 2px dashed #3bb44a;
-            cursor: pointer;
-            font-family: sans-serif;
-            transition: color 300ms ease-in-out, background 300ms ease-in-out;
-            outline: none;
-            overflow: hidden;
-            border-radius: 10px;
+            justify-content: space-around;
+            background-color: #fff;
+            color: black;
+            padding: 12px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
 
-        .picture:hover {
-            color: #777;
-            background: #f9fff9;
+        table {
+            border-collapse: collapse;
+            /* border: 2px solid rgb(200, 200, 200); */
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            width: 100%;
+            text-align: center;
         }
 
-        .picture:active {
-            border-color: turquoise;
-            color: turquoise;
-            background: #eee;
+        td {
+            /* border: 1px solid rgb(190, 190, 190); */
+            padding: 10px 20px;
+            background-color: #9acba070;
+            color: black;
         }
 
-        .picture:focus {
-            color: #f9fff9;
-            /* background: #F9FFF9; */
-            box-shadow: 0 0 10px rgba(92, 248, 95, 0.525);
+        th {
+            background-color: #464748;
+            color: #fff;
         }
 
-        .picture__img {
-            max-width: 100%;
+        table th:first-child {
+            border-top-left-radius: 10px;
+        }
+
+        table th:last-child {
+            border-top-right-radius: 10px;
+        }
+
+        caption {
+            padding: 10px;
         }
 
         /* sidebar css  */
@@ -126,13 +134,14 @@
     </style>
 </head>
 
-<body class="position-relative" style="height: 100vh">
+<body>
     <!--start top header-->
     <header class="top-header">
         <nav class="navbar navbar-expand-md w-100 navbar-dark container gap-3">
             <h3 class="fw-bold ms-2 mt-1" style="margin-bottom: 0px; padding: 5px; cursor: pointer" id="threeBar">
                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="15" viewBox="0 0 21 15" fill="none">
-                    <path d="M1.72997 7.60657H19.73M1.72997 1.60657H19.73M1.72997 13.6066H19.73" stroke="#464748" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M1.72997 7.60657H19.73M1.72997 1.60657H19.73M1.72997 13.6066H19.73" stroke="#464748"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </h3>
             <ul class="navbar-nav secondary-menu flex-row">
@@ -151,9 +160,12 @@
                 <li class="nav-item">
                     <a class="nav-link position-relative" href="cart.html">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                            <path d="M10.0919 10.5768C12.5772 10.5768 14.5919 8.56206 14.5919 6.07678C14.5919 3.5915 12.5772 1.57678 10.0919 1.57678C7.60664 1.57678 5.59192 3.5915 5.59192 6.07678C5.59192 8.56206 7.60664 10.5768 10.0919 10.5768Z" stroke="#464748" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M6.10156 13.7401C1.98095 13.6858 1.58329 17.6483 1.89954 19.6364H18.3685C18.3685 17.8139 18.5025 13.9351 14.3714 13.7401H6.10156Z" stroke="#464748" stroke-width="2" />
+                            <path
+                                d="M10.0919 10.5768C12.5772 10.5768 14.5919 8.56206 14.5919 6.07678C14.5919 3.5915 12.5772 1.57678 10.0919 1.57678C7.60664 1.57678 5.59192 3.5915 5.59192 6.07678C5.59192 8.56206 7.60664 10.5768 10.0919 10.5768Z"
+                                stroke="#464748" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M6.10156 13.7401C1.98095 13.6858 1.58329 17.6483 1.89954 19.6364H18.3685C18.3685 17.8139 18.5025 13.9351 14.3714 13.7401H6.10156Z"
+                                stroke="#464748" stroke-width="2" />
                         </svg>
                     </a>
                 </li>
@@ -199,153 +211,126 @@
 
     <!--end top header-->
 
-    <div class="containe small" style="padding-bottom: 100px">
+    <div class="mx-3" style="margin-bottom: 130px">
         <div class="my-3">
-            <img src="../../front_assets/img/advice/female.png" class="container" alt="" />
-            <div class="d-flex justify-content-between mx-3">
-                <div class="mt-3">
-                    <h2>Product Name</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
-                        sequi!
-                    </p>
-                    <div>
-                        <img src="../../front_assets/img/advice/profile.jpg" class="img-fluid rounded-circle" style="width: 20px" alt="" />
-                        <img src="../../front_assets/img/advice/profile.jpg" class="img-fluid rounded-circle" style="width: 20px" alt="" />
-                        <p></p>
-                    </div>
-                </div>
-                <div class="mt-3 fs-5 d-flex px-2 gap-2">
-                    <i class="bi bi-heart" style="cursor: pointer"></i>
-                    <p>111</p>
-                    <i class="bi bi-chat" style="cursor: pointer"></i>
-                    <p>32</p>
-                </div>
-            </div>
+            <a href="/seller/product_upload" class="btn w-100 p-2 mt-3 btn text-light"
+                style="background-color: #3bb44a">
+                ADD PRODUCT
+            </a>
         </div>
-        <div class="my-3">
-            <img src="../../front_assets/img/advice/male.png" class="container" alt="" />
-            <div class="d-flex justify-content-between mx-3">
-                <div class="mt-3">
-                    <h2>Product Name</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
-                        sequi!
-                    </p>
-                    <div>
-                        <img src="../../front_assets/img/advice/profile.jpg" class="img-fluid rounded-circle" style="width: 20px" alt="" />
-                        <img src="../../front_assets/img/advice/profile.jpg" class="img-fluid rounded-circle" style="width: 20px" alt="" />
-                        <p></p>
-                    </div>
-                </div>
-                <div class="mt-3 fs-5 d-flex px-2 gap-2">
-                    <i class="bi bi-heart" style="cursor: pointer"></i>
-                    <p>111</p>
-                    <i class="bi bi-chat" style="cursor: pointer"></i>
-                    <p>32</p>
-                </div>
-            </div>
-        </div>
-        <div class="my-3">
-            <img src="../../front_assets/img/advice/male.png" class="container" alt="" />
-            <div class="d-flex justify-content-between mx-3">
-                <div class="mt-3">
-                    <h2>Product Name</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
-                        sequi!
-                    </p>
-                    <div>
-                        <img src="../../front_assets/img/advice/profile.jpg" class="img-fluid rounded-circle" style="width: 20px" alt="" />
-                        <img src="../../front_assets/img/advice/profile.jpg" class="img-fluid rounded-circle" style="width: 20px" alt="" />
-                        <p></p>
-                    </div>
-                </div>
-                <div class="mt-3 fs-5 d-flex px-2 gap-2">
-                    <i class="bi bi-heart" style="cursor: pointer"></i>
-                    <p>111</p>
-                    <i class="bi bi-chat" style="cursor: pointer"></i>
-                    <p>32</p>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="d-flex justify-content-between text-dark">
-                <p class="fw-bold">Suggested reels</p>
-                <span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
-                        <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z" />
-                    </svg>
-                    Watch All
-                </span>
-            </div>
-            <div class="reels container">
-                <div class="">
-                    <a href="#">
-                        <img src="../../front_assets/img/advice/reels.png" class="img-fluid" style="width: 150px" />
-                        <!-- <p class="text-center" style="padding-top: 5px;">Shop Now</p> -->
-                    </a>
-                </div>
 
-                <div class="">
-                    <a href="#">
-                        <img src="../../front_assets/img/advice/reels-2.png" class="img-fluid" style="width: 150px" />
-                        <!-- <p class="text-center" style="padding-top: 5px;">Mobiles</p> -->
-                    </a>
-                </div>
+        <table class="mt-4">
+            <tr>
+                <th>
+                    Gross <br />
+                    Products
+                </th>
+                <th class="">
+                    Sold <br />
+                    Item
+                </th>
+            </tr>
+            <tr>
+                <td style="
+              border-right: 1px solid rgb(190, 190, 190);
+              border-bottom-left-radius: 10px;
+            ">
+                    12
+                </td>
+                <td style="border-bottom-right-radius: 10px">08</td>
+            </tr>
+        </table>
+        <div>
+            <style>
+                body .cell {
+                    padding: 0px 0px 0px 30px;
+                }
 
-                <div class="">
-                    <a href="#">
-                        <img src="../../front_assets/img/advice/reels-3.png" class="img-fluid" style="width: 150px" />
-                        <!-- <p class="text-center" style="padding-top: 5px;">Mobiles</p> -->
-                    </a>
-                </div>
-                <div class="">
-                    <a href="#">
-                        <img src="../../front_assets/img/advice/reels.png" class="img-fluid" style="width: 150px" />
-                        <!-- <p class="text-center" style="padding-top: 5px;">Mobiles</p> -->
-                    </a>
-                </div>
-                <div class="">
-                    <a href="#">
-                        <img src="../../front_assets/img/advice/reels-2.png" class="img-fluid" style="width: 150px" />
-                        <!-- <p class="text-center" style="padding-top: 5px;">Mobiles</p> -->
-                    </a>
-                </div>
-                <div class="">
-                    <a href="#">
-                        <img src="../../front_assets/img/advice/reels-3.png" class="img-fluid" style="width: 150px" />
-                        <!-- <p class="text-center" style="padding-top: 5px;">Mobiles</p> -->
-                    </a>
-                </div>
+                .sd-bar {
+                    --bar: linear-gradient(#9acba0 100%, transparent);
+                    border-bottom-left-radius: 10px;
+                    border-color: #9acba0;
+                }
+
+                .sd-graph {
+                    --_x-grid-line-color: #9acba0;
+                    --_y-grid-line-color: #9acba0;
+                }
+            </style>
+
+            <h2 class="mb-4 mt-5 text-center">Sales Details</h2>
+            <div class="cell mb-5">
+                <div id="chart2"></div>
+            </div>
+
+            <script>
+                const { Chart } = SingleDivUI;
+
+                const options = {
+                    data: {
+                        labels: ["1", "2", "3", "4"],
+                        series: {
+                            points: [15, 9, 25, 18],
+                        },
+                    },
+                    height: 200,
+                    width: "100%",
+                    barColors: "#9ACBA0",
+                };
+
+                new Chart("#chart2", {
+                    type: "bar",
+                    ...options,
+                });
+            </script>
+        </div>
+
+        <div class="d-flex rounded mt-3 p-2" style="
+          background-color: #f9fff9;
+          box-shadow: 0 10px 16px 0 #d1edd5, 0 6px 20px 0 #d1edd5;
+        ">
+            <img src="../../front_assets/img/advice/Icon (1).png" style="height: 100px" />
+            <div class="ps-3">
+                <h3 style="margin-bottom: 0px">Product Name</h3>
+                <p style="margin-bottom: 0px">Price:</p>
+                <p style="margin-bottom: 0px">Product Id:</p>
+                <p style="margin-bottom: 0px">User Id:</p>
+                <p style="margin-bottom: 0px">Address:</p>
+                <p style="margin-bottom: 0px">Order Date:</p>
             </div>
         </div>
-        <div class="my-3">
-            <img src="../../front_assets/img/advice/male.png" class="container" alt="" />
-            <div class="d-flex justify-content-between mx-3">
-                <div class="mt-3">
-                    <h2>Product Name</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
-                        sequi!
-                    </p>
-                    <div>
-                        <img src="../../front_assets/img/advice/profile.jpg" class="img-fluid rounded-circle" style="width: 20px" alt="" />
-                        <img src="../../front_assets/img/advice/profile.jpg" class="img-fluid rounded-circle" style="width: 20px" alt="" />
-                        <p></p>
-                    </div>
-                </div>
-                <div class="mt-3 fs-5 d-flex px-2 gap-2">
-                    <i class="bi bi-heart" style="cursor: pointer"></i>
-                    <p>111</p>
-                    <i class="bi bi-chat" style="cursor: pointer"></i>
-                    <p>32</p>
-                </div>
+        <div class="d-flex rounded mt-3 p-2" style="
+          background-color: #f9fff9;
+          box-shadow: 0 10px 16px 0 #d1edd5, 0 6px 20px 0 #d1edd5;
+        ">
+            <img src="../../front_assets/img/advice/Icon (1).png" style="height: 100px" />
+            <div class="ps-3">
+                <h3 style="margin-bottom: 0px">Product Name</h3>
+                <p style="margin-bottom: 0px">Price:</p>
+                <p style="margin-bottom: 0px">Product Id:</p>
+                <p style="margin-bottom: 0px">User Id:</p>
+                <p style="margin-bottom: 0px">Address:</p>
+                <p style="margin-bottom: 0px">Order Date:</p>
+            </div>
+        </div>
+        <div class="d-flex rounded mt-3 p-2" style="
+          background-color: #f9fff9;
+          box-shadow: 0 10px 16px 0 #d1edd5, 0 6px 20px 0 #d1edd5;
+        ">
+            <img src="../../front_assets/img/advice/Icon (1).png" style="height: 100px" />
+            <div class="ps-3">
+                <h3 style="margin-bottom: 0px">Product Name</h3>
+                <p style="margin-bottom: 0px">Price:</p>
+                <p style="margin-bottom: 0px">Product Id:</p>
+                <p style="margin-bottom: 0px">User Id:</p>
+                <p style="margin-bottom: 0px">Address:</p>
+                <p style="margin-bottom: 0px">Order Date:</p>
             </div>
         </div>
     </div>
 
     <!-- Footer  -->
+
     <div class="tab shadow-lg">
         <a class="tab-item1" href="/seller/app_home">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="none">
@@ -407,7 +392,7 @@
         >
           <path
             d="M10.9108 1.29134C10.5594 1.01809 10.3838 0.881463 10.1898 0.828944C10.0187 0.782604 9.83827 0.782604 9.66712 0.828944C9.47315 0.881463 9.29749 1.01809 8.94616 1.29134L2.16386 6.56647C1.71049 6.91909 1.4838 7.0954 1.32049 7.3162C1.17583 7.51179 1.06807 7.73213 1.00249 7.96639C0.928467 8.23086 0.928467 8.51804 0.928467 9.0924V16.3273C0.928467 17.4474 0.928467 18.0075 1.14645 18.4353C1.3382 18.8116 1.64416 19.1176 2.02049 19.3093C2.44831 19.5273 3.00836 19.5273 4.12847 19.5273H6.12847C6.40849 19.5273 6.54851 19.5273 6.65546 19.4728C6.74954 19.4249 6.82603 19.3484 6.87397 19.2543C6.92847 19.1474 6.92847 19.0074 6.92847 18.7273V12.1273C6.92847 11.5673 6.92847 11.2872 7.03746 11.0733C7.13333 10.8852 7.28631 10.7322 7.47448 10.6363C7.68839 10.5273 7.96841 10.5273 8.52847 10.5273H11.3285C11.8885 10.5273 12.1685 10.5273 12.3825 10.6363C12.5706 10.7322 12.7236 10.8852 12.8195 11.0733C12.9285 11.2872 12.9285 11.5673 12.9285 12.1273V18.7273C12.9285 19.0074 12.9285 19.1474 12.983 19.2543C13.0309 19.3484 13.1074 19.4249 13.2015 19.4728C13.3084 19.5273 13.4484 19.5273 13.7285 19.5273H15.7285C16.8486 19.5273 17.4086 19.5273 17.8364 19.3093C18.2128 19.1176 18.5187 18.8116 18.7105 18.4353C18.9285 18.0075 18.9285 17.4474 18.9285 16.3273V9.0924C18.9285 8.51804 18.9285 8.23086 18.8544 7.96639C18.7889 7.73213 18.6811 7.51179 18.5364 7.3162C18.3731 7.0954 18.1464 6.91909 17.6931 6.56647L10.9108 1.29134Z"
-            fill="#464748"
+            fill="#3BB44A"
           />
         </svg>
         <span class="mt-1" style="font-size: 13px">Home</span>
@@ -458,13 +443,13 @@
         >
           <path
             d="M10.4791 9.43091V5.93091M10.4791 12.9309H10.4891M5.47913 16.9309V19.2664C5.47913 19.7993 5.47913 20.0657 5.58835 20.2025C5.68335 20.3215 5.8274 20.3908 5.97967 20.3906C6.15475 20.3904 6.3628 20.224 6.77888 19.8911L9.16434 17.9827C9.65164 17.5929 9.8953 17.398 10.1666 17.2594C10.4073 17.1364 10.6636 17.0465 10.9283 16.9922C11.2268 16.9309 11.5388 16.9309 12.1629 16.9309H14.6791C16.3593 16.9309 17.1994 16.9309 17.8411 16.6039C18.4056 16.3163 18.8645 15.8574 19.1521 15.2929C19.4791 14.6511 19.4791 13.8111 19.4791 12.1309V6.73091C19.4791 5.05075 19.4791 4.21067 19.1521 3.56894C18.8645 3.00445 18.4056 2.54551 17.8411 2.25789C17.1994 1.93091 16.3593 1.93091 14.6791 1.93091H6.27913C4.59897 1.93091 3.75889 1.93091 3.11715 2.25789C2.55267 2.54551 2.09373 3.00445 1.80611 3.56894C1.47913 4.21067 1.47913 5.05075 1.47913 6.73091V12.9309C1.47913 13.8609 1.47913 14.3259 1.58135 14.7074C1.85875 15.7426 2.66739 16.5513 3.70267 16.8287C4.08417 16.9309 4.54915 16.9309 5.47913 16.9309Z"
-            stroke="#3BB44A"
+            stroke="#464748"
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
           />
         </svg>
-        <span class="mt-1" style="font-size: 13px; color: #3bb44a">Advice</span>
+        <span class="mt-1" style="font-size: 13px">Advice</span>
       </div>
       <div class="align-items-center col d-flex flex-column">
         <svg
@@ -488,8 +473,12 @@
 
     <!-- JavaScript files -->
     <script src="../../front_assets/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"
+        integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../../front_assets/js/jquery.min.js"></script>
     <script src="../../front_assets/plugins/slick/slick.min.js"></script>
     <script src="../../front_assets/js/main.js"></script>

@@ -95,7 +95,6 @@ const category = async (req, res) => {
         }
     ]);
 
-
     // console.log(parent);
 
     if (record.length > 0) {

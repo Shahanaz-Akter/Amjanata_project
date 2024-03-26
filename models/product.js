@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-    seller_id: {
-        type: mongoose.Schema.ObjectId,
-        required: false
-    },
+   
     name: {
         type: String,
         required: false,
@@ -13,7 +10,7 @@ const productSchema = new mongoose.Schema({
     },
     buying_price: {
         type: Number,
-        required: true,
+        required: false,
         unique: false
     },
     selling_price: {
@@ -121,6 +118,16 @@ const productSchema = new mongoose.Schema({
     },
     color: {
         type: String,
+        required: false,
+        unique: false
+    },
+    stock: {
+        type: String,
+        required: false,
+        unique: false
+    },
+    seller_id: {
+        type: mongoose.Schema.ObjectId,
         required: false,
         unique: false
     },

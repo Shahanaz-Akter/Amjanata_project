@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const upload = require('../multer');
 
-const { addSeller, sellerList, addSellerProduct, sellerProductList, sellerRegister, numberVerification, sellerInformation, sellerAddProduct, sellerPayment, orderList, postNumberVerification, postSellerInformation, postSellerAddProduct, appHome
 
-} = require('../controllers/sellerController');
+const { addSeller, sellerList, addSellerProduct, sellerProductList, sellerRegister, numberVerification, postVerificationCode, sellerAddProduct, productUpload, postProductUpload, sellerPayment, orderList, postNumberVerification, postInformation, postSellerAddProduct, appHome } = require('../controllers/sellerController');
 
 // admin seller management 
 router.get('/add_seller', addSeller);
@@ -16,9 +16,14 @@ router.get('/seller_register', sellerRegister);
 
 router.get('/number_verification', numberVerification);
 router.post('/post_number_verification', postNumberVerification);
+router.post('/post_verification_code/:id', postVerificationCode);
 
-router.get('/seller_information', sellerInformation);
-router.post('/post_seller_information', postSellerInformation);
+router.post('/post_information/:id', upload.fields([{ name: 'seller_picture', maxCount: 1 },]), postInformation);
+
+
+
+router.get('/product_upload', productUpload);
+router.post('/post_product_upload', upload.fields([{ name: 'product_img', maxCount: Infinity },]), postProductUpload);
 
 router.get('/seller_add_product', sellerAddProduct);
 router.post('/post_seller_add_product', postSellerAddProduct);
