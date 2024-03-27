@@ -7,7 +7,7 @@
 // Middleware to check if user is authenticated
 const authenticateUser = (req, res, next) => {
 
-    if (req.session.userr) {
+    if (req.session.userId) {
         next();
     } else {
         res.status(401).send('You are Not Authenticated User!');

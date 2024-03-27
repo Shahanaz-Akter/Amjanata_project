@@ -105,6 +105,7 @@
                                         <th>Product_Code</th>
                                         <th>Product_Type</th>
                                         <th>Description</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -187,6 +188,10 @@
                                                 <%=objects.description%>
                                             </td>
                                             <td>
+                                                <%=objects.status%>
+                                            </td>
+
+                                            <td>
                                                 <div class="btn-group mb-2">
                                                     <button type="button"
                                                         class="btn btn-outline-secondary dropdown-toggle"
@@ -195,7 +200,7 @@
                                                         Action <i class="mdi mdi-chevron-down"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="/product/edit_product/">
+                                                        <a class="dropdown-item" href="/product/edit_product/<%=objects._id%>">
                                                             <svg xmlns="http://www.w3.org/2000/svg" height="16"
                                                                 width="16" viewBox="0 0 512 512">
                                                                 <path
@@ -204,7 +209,7 @@
                                                             <span class="ms-1">Edit</span>
                                                         </a>
 
-                                                        <a class="dropdown-item" href="/product/delete_product/">
+                                                        <a class="dropdown-item" href="/product/delete_product/<%=objects._id%>">
                                                             <svg xmlns="http://www.w3.org/2000/svg" height="16"
                                                                 width="16" viewBox="0 0 448 512">
                                                                 <path

@@ -982,7 +982,7 @@
                         <div class="container-fluid card" style="padding: 20px;">
 
                             <!-- new Add product code Start  -->
-                            <form action="/product/post_edit_product/<%=record.id%>" method="post" enctype="">
+                            <form action="/product/post_edit_product/<%=record._id%>" method="post" enctype="multipart/form-data">
 
                                 <div class="row">
 
@@ -1113,6 +1113,12 @@
                                                 <input type="number" class="form-control" placeholder="700" name="old_price" onkeypress="return event.keyCode != 13;" value="<%=record.old_price%>">
                                             </div>
                                         </div>
+                                        <div class="col-12 col-md-4 col-lg-4 col-xl-4 mb-2">
+                                            <div class="form-group" style="background-color: white; border-radius: 5px; padding:10px">
+                                                <label>Status</label>
+                                                <input type="text" class="form-control" placeholder="" name="status" onkeypress="return event.keyCode != 13;" value="<%=record.status%>">
+                                            </div>
+                                        </div>
 
                                         <div class="col-12 col-md-4 col-lg-4 col-xl-4 mb-2">
                                             <div class="main-img-container mt-2">
@@ -1158,7 +1164,7 @@
                                                 <div class="secondary-img-container" id="secondary-img-container">
 
                                                     <%if(record!=null && record.secondary_image!=null){%>
-                                                        <%let images=JSON.parse(record.secondary_image)%>
+                                                        <%let images=record.secondary_image%>
                                                             <%images.forEach(img=>{ %>
                                                                 <!-- background-position-x: center; background-position-y: center; -->
                                                                 <div class="position-relative" id="secondary_img_preview_1" style="width: 90px; height: 90px; background: url('<%=img%>'); background-repeat: no-repeat;background-size: cover; margin-right: 8px; margin-bottom: 8px;">
@@ -1509,7 +1515,7 @@
                                         <div class="col-12 col-md-12 col-xl-6 col-lg-6">
                                             <div class="form-group" style="background-color: white; border-radius: 0px; padding:10px">
                                                 <label>Description</label>
-                                                <textarea name="description" class="form-control" cols="10" rows="7" value="">...here will be dynamic value</textarea>
+                                                <textarea name="description" class="form-control" cols="10" rows="7" value=""><%=record.description%></textarea>
                                             </div>
                                         </div>
                                         <!-- <div class="col-md-6 col-xl-6 col-sm-12 mt-sm-3 mt-md-0 mt-3">
@@ -1525,7 +1531,7 @@
 
                                 <div class="ms-3" style="display: flex; justify-content: left;">
                                     <button type="submit" class="btn btn-dark me-3 border-0" style="background-color:#0E5DE7; padding: 10px 3em; font-weight: 600;">
-                                        Upload
+                                        Confirm
                                     </button>
 
                                     <button class="btn btn-info border-0" style="padding: 10px 3em; font-weight: 600;">
@@ -1537,41 +1543,7 @@
 
                             <!-- new Add product code End  -->
 
-                            <div class="row d-none">
-                                <div class="col-12 col-md-4 col-lg-4 col-xl-4 mb-3">
-                                    <label for="warehouse" class="form-label">Select Warehouse</label>
-                                    <select class="form-control" data-toggle="select2" data-width="100%" name="warehouse" style="background: #FCFCFC!important;">
-                                        <option>Warehouse</option>
-                                        <optgroup label="">
-                                            <option value="united_state">United State</option>
-                                            <option value="canada">Canada</option>
-                                            <option value="maxico">Maxico</option>
-                                            <option value="france">France</option>
-                                            <option value="germany">Germany</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
-
-
-
-                                <!-- <style>
-                                    .select2-container--default .select2-selection--single .select2-selection__rendered {
-                                        background: #FCFCFC !important;
-                                        color: #444;
-
-                                    }
-                                   </styl> -->
-
-
-                                <div class="col-12 col-md-4 col-lg-4 col-xl-4 mb-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Amount</label>
-                                        <input data-toggle="touchspin" type="text" name="amount" placeholder="4.470" style="background: #FCFCFC!important;">
-                                    </div>
-                                </div>
-
-
-                            </div>
+                           
                             <!-- container-fluid -->
 
                         </div>

@@ -6,6 +6,9 @@ let subCategory = require('../models/subcategory');
 let Category = require('../models/category');
 const Product = require('../models/product');
 const Seller = require('../models/seller');
+const sellerOrder = require('../models/sellerorder');
+
+
 var requests = require('request');
 
 const addSeller = async (req, res) => {
@@ -30,52 +33,73 @@ const sellerRegister = async (req, res) => {
 }
 
 const numberVerification = async (req, res) => {
-    res.render('seller/number_verification.ejs');
+    let err = req.query.message;
+
+    res.render('seller/number_verification.ejs', { err });
 }
 const postNumberVerification = async (req, res) => {
     let { phone } = req.body;
-    // Generate OTP start
-    // const newOtp = Math.floor(Math.random() * (9999 - 1234 + 1) + 1234);
-    const newOtp = 1234;
-    // Access environment variables
-    const smsApiUrl = 'https://api.sms.net.bd/sendsms';
-    const smsApiKey = '0k4pEM8Atavv3W1c5af3vEYUB99j9kCZ5rYb84ZE';
+    if (phone.length !== 11) {
+        return res.redirect(`/seller/number_verification?message=${encodeURIComponent('Phone number must be 11 digits')}`);
+    }
 
-    // Send OTP via SMS
-    // Need to use this 3 line code for sending otp to the requested number
-    // var options = {
-    //     'method': 'POST',
-    //     'url': smsApiUrl,
-    //     formData: {
-    //         'api_key': smsApiKey,
-    //         msg: `Your Ztrios OTP Number: ${newOtp}`,
-    //         to: phone,
-    //     }
-    // };
+    let seller_present = await Seller.findOne({ phone });
+    // seller_present.phone sghoukld be unique and should be must be 11 digits 
+    // set up this validation 
+    //if there is any validation error then redirect  previous route with this error ,message
 
-    // requests(options, function (error, response) {
-    //     if (error) throw new Error(error);
-    //     console.log(response.body);
-    // });
+    // console.log('seller_present: ', seller_present);
 
-    // console.log('SMS API Response:', options.data);
+    if (seller_present) {
+        req.session.userId = seller_present._id;
+        console.log(req.session.userId);
+        res.redirect('/seller/app_home');
+    }
+    else {
+        // Generate OTP start
+        // const newOtp = Math.floor(Math.random() * (9999 - 1234 + 1) + 1234);
+        const newOtp = 1234;
+        // Access environment variables
+        const smsApiUrl = 'https://api.sms.net.bd/sendsms';
+        const smsApiKey = '0k4pEM8Atavv3W1c5af3vEYUB99j9kCZ5rYb84ZE';
 
-    // Generate OTP end
+        // Send OTP via SMS
+        // Need to use this 3 line code for sending otp to the requested number
+        // var options = {
+        //     'method': 'POST',
+        //     'url': smsApiUrl,
+        //     formData: {
+        //         'api_key': smsApiKey,
+        //         msg: `Your Ztrios OTP Number: ${newOtp}`,
+        //         to: phone,
+        //     }
+        // };
 
-    let seller = await Seller.create({
-        'id': '',
-        'phone': phone,
-        'store_name': '',
-        'seller_user_name': '',
-        'business_type': '',
-        'seller_image': '',
-        'address': '',
-        'otp_num': newOtp,
-    });
+        // requests(options, function (error, response) {
+        //     if (error) throw new Error(error);
+        //     console.log(response.body);
+        // });
 
-    let seller_id = seller._id;
-    let phn = phone.slice(0, 3);
-    res.render('seller/verification_code.ejs', { seller_id, phn });
+        // console.log('SMS API Response:', options.data);
+
+        // Generate OTP end
+
+        let seller = await Seller.create({
+            'phone': phone,
+            'store_name': '',
+            'seller_user_name': '',
+            'business_type': '',
+            'seller_image': '',
+            'address': '',
+            'otp_num': newOtp,
+        });
+        console.log('seller: ', seller);
+        req.session.sellerId = seller._id;
+        let seller_id = seller._id;
+        let phn = phone.slice(0, 3);
+        res.render('seller/verification_code.ejs', { seller_id, phn });
+    }
+
 }
 
 const postVerificationCode = async (req, res) => {
@@ -122,7 +146,7 @@ const postInformation = async (req, res) => {
         console.log('update seller: ', update);
 
         if (update) {
-            req.session.sellerId = id;
+            // req.session.sellerId = id;
             res.render('seller/app_home.ejs');
         }
 
@@ -146,8 +170,7 @@ const postProductUpload = async (req, res) => {
         sec_img.push('/front_assets/new_images/' + img.filename);
     });
 
-    console.log('sec_img :', sec_img);
-
+    // console.log('sec_img :', sec_img);
     //latest parent categories uopc code
     const latestCategory = await parentCategory.findOne({}).sort({ createdAt: -1 });
     let latest_upc_code = parseInt(latestCategory.upc_code);
@@ -160,6 +183,7 @@ const postProductUpload = async (req, res) => {
     let sku_code = upc_code + timestamp;
 
     let p = {
+        'seller_id': req.session.sellerId,
         'sku_code': sku_code ? sku_code : null,
         'upc_code': upc_code ? upc_code : null,
         'name': product_name ? product_name : null,
@@ -173,7 +197,7 @@ const postProductUpload = async (req, res) => {
         'selling_price': selling_price ? selling_price : null,
         'discount': discount ? discount : null,
         'date': null,
-        'total_qty': null,
+        'total_qty': stock,
         'price': null,
         'category_image': null,
         'old_price': null,
@@ -183,15 +207,17 @@ const postProductUpload = async (req, res) => {
         'colorVariants': null,
         'sizeVariants': null,
         'product_code': Math.floor(Math.random() * 1000) + 1,
-        'seller_id': req.session.sellerId
-    }
+        'status': 'not approved'
 
+
+    }
     let record = await Product.create(p);
 
     if (record) {
         let product_list = await Product.find({ seller_id: req.session.sellerId });
-        console.log('product_list: ', product_list);
-        res.render('seller/product_list', { product_list });
+        // console.log(req.session.sellerId);
+        // console.log('product_list: ', product_list);
+        res.render('seller/product_list.ejs', { product_list });
     }
 }
 
@@ -203,8 +229,45 @@ const postSellerAddProduct = async (req, res) => {
     console.log('Hello');
 }
 
+
+
 const appHome = async (req, res) => {
-    res.render('seller/app_home.ejs');
+    // let seller_orders= await sellerOrder.find({seller_id:req.session.userId});
+    let seller_orders = await sellerOrder.find({ seller_id: req.session.userId }).sort({ updatedAt: -1 });
+    let seller_order1 = await sellerOrder.aggregate([
+        {
+            $match: { seller_id: req.session.userId }
+        },
+        {
+            $sort: { updatedAt: -1 }
+        },
+        {
+            $lookup: {
+                from: "customers", // Name of the customers collection
+                localField: "customer_id",
+                foreignField: "_id",
+                as: "customer_info"
+            }
+        },
+        {
+            $addFields: {
+                customer: { $arrayElemAt: ["$customer_info", 0] }
+            }
+        },
+        {
+            $project: {
+                customer_info: 0 // Exclude the customer_info array from the output
+            }
+        }
+    ]);
+
+    console.log(seller_orders);
+    console.log(seller_order1);
+
+    // 01836549239
+    console.log(req.session.userId );
+
+    res.render('seller/app_home.ejs', { seller_orders });
 }
 const sellerPayment = async (req, res) => {
     res.render('seller/seller_payment.ejs');
@@ -213,7 +276,13 @@ const orderList = async (req, res) => {
     res.render('seller/order_list.ejs');
 }
 
+const productList = async (req, res) => {
+    let product_list = await Product.find({ seller_id: req.session.userId });
+    // console.log(product_list);  
+    res.render('seller/product_list.ejs', { product_list });
+}
+
 // sellerRegister, numberVerification, verificationCode, sellerInformation, sellerAddProduct, sellerPayment,orderList
 module.exports = {
-    addSeller, sellerList, addSellerProduct, sellerProductList, sellerRegister, numberVerification, postVerificationCode, sellerAddProduct, productUpload, postProductUpload, sellerPayment, orderList, postNumberVerification, postInformation, postSellerAddProduct, appHome
+    addSeller, sellerList, addSellerProduct, sellerProductList, sellerRegister, numberVerification, postVerificationCode, sellerAddProduct, productUpload, postProductUpload, sellerPayment, orderList, postNumberVerification, postInformation, postSellerAddProduct, appHome, productList
 }

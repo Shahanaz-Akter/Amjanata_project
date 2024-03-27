@@ -6,6 +6,8 @@ let subCategory = require('../models/subcategory');
 let Category = require('../models/category');
 let Product = require('../models/product');
 let Customer = require('../models/customer');
+let sellerOrder = require('../models/sellerorder');
+
 const Order = require('../models/order');
 
 const { ObjectId } = require('mongodb'); // if using MongoDB native driver
@@ -279,10 +281,12 @@ const addCart = async (req, res) => {
             'id': single_product._id,
             'name': single_product.name,
             'primary_image': single_product.primary_image,
+            'actual_price': single_product.selling_price,
             'selling_price': single_product.discount ? Math.round(dis) : single_product.selling_price,
             'qty': 1,
             'price_without_discount': Math.round(dis),
             'discount': single_product.discount,
+            'seller_id': single_product.seller_id,
         }
 
         //single matched product will store this array objevt
@@ -352,21 +356,21 @@ const productIncDec = async (req, res) => {
         subT = subT + ele.price_without_discount;
     });
 
-    console.log('Sub Total: ',subT);
+    console.log('Sub Total: ', subT);
 
-        res.send({
-            success: true,
-            locals: { session: req.session },
-            qty: qty,
-            price_without_discount: price_without_discount,
-            sub_total: subT
-        })
+    res.send({
+        success: true,
+        locals: { session: req.session },
+        qty: qty,
+        price_without_discount: price_without_discount,
+        sub_total: subT
+    })
 
 }
 
 const postOrder = async (req, res) => {
     console.log('post Order');
-    let subT=0;
+    let subT = 0;
     let { address, delivery } = req.body;
     console.log('Address: ', address);
     console.log('Delivery: ', delivery);
@@ -383,8 +387,28 @@ const postOrder = async (req, res) => {
             delivery: parseInt(delivery),
             products: session_products_list,
             sub_total: subT,
-            total_amount: parseInt(delivery)+subT
+            total_amount: parseInt(delivery) + subT
         });
+
+
+        //each seller order will be stored in the seller_id table from the session session_products_list array
+        session_products_list.forEach(async (pr) => {
+            if (pr.seller_id != null) {
+                let seller_order = await sellerOrder.create({
+                    seller_id: pr.seller_id,
+                    product_id: pr._id,
+                    order_id: order._id,
+                    qty: pr.qty,
+                    primary_image: pr.primary_image,
+                    actual_price: pr.actual_price,
+                    name: pr.name,
+                    discount: pr.discount,
+                    customer_id:req.session.auth_user._id
+                });
+            }
+
+        });
+
         if (order) {
             req.session.products = [];
             res.redirect('/');

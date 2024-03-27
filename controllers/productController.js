@@ -4,6 +4,8 @@ const parentCategory = require('../models/parentcategory');
 const subCategory = require('../models/subcategory');
 const Category = require('../models/category');
 const Product = require('../models/product');
+const Seller = require('../models/seller');
+
 const { ObjectId } = require('mongodb');
 
 // const addProduct = async (req, res) => {
@@ -418,6 +420,7 @@ const postAddProduct = async (req, res) => {
             'colorVariants': colorVariants ? colorVariants : null,
             'sizeVariants': sizeVariants ? sizeVariants : null,
             'product_code': Math.floor(Math.random() * 1000) + 1,
+            'status': 'approved'
         }
 
         // console.log(result);
@@ -437,6 +440,71 @@ const postAddProduct = async (req, res) => {
         console.log("Error: ", err);
     }
 }
+
+
+const editProduct = async (req, res) => {
+    let params_id = req.params.id;
+    const record = await Product.findById(params_id);
+    // console.log('Record :', record);
+    res.render('product/edit_product.ejs', { record });
+}
+
+const postEditProduct = async (req, res) => {
+    let { sku_code, upc_code, name, brand, color, parent_category, sub_category, category, product_type, buying_price, selling_price, discount, date, total_qty, price, old_price, description, colorVariants, sizeVariants, status } = req.body;
+
+    let params_id = req.params.id;
+    let previousRecord= await Product.findById(params_id);
+
+    let  filter = { _id: new ObjectId(params_id) };
+
+    // Define the update operation you want to perform
+    const updateDoc = {
+        $set: {
+            sku_code: sku_code || previousRecord.sku_code,
+            upc_code: upc_code || previousRecord.upc_code,
+            name: name || previousRecord.name,
+            brand: brand || previousRecord.brand,
+            color: color || previousRecord.color,
+            parent_category: parent_category || previousRecord.parent_category,
+            sub_category: sub_category || previousRecord.sub_category,
+            category: category || previousRecord.category,
+            product_type: product_type || previousRecord.product_type,
+            buying_price: buying_price || previousRecord.buying_price,
+            selling_price: selling_price || previousRecord.selling_price,
+            discount: discount || previousRecord.discount,
+            category_image: req.files['category_image'] ? '/front_assets/new_images/' + req.files['category_image'][0].filename : previousRecord.category_image,
+            primary_image: req.files['primary_image'] ? '/front_assets/new_images/' + req.files['primary_image'][0].filename : previousRecord.primary_image,
+            secondary_image: previousRecord.secondary_image,
+            date: date || previousRecord.date,
+            total_qty: total_qty || previousRecord.total_qty,
+            price: price || previousRecord.price,
+            old_price: old_price || previousRecord.old_price,
+            description: description || previousRecord.description,
+            status: status || previousRecord.status,
+            colorVariants: colorVariants || previousRecord.colorVariants,
+            sizeVariants: sizeVariants || previousRecord.sizeVariants
+        }
+    };
+
+    // Perform the update operation
+    await Product.updateOne(filter, updateDoc);
+
+    res.redirect('/product/product_list');
+}
+
+const deleteProduct = async (req, res) => {
+    try {
+        let params_id = req.params.id;
+        await Product.deleteOne({ '_id': params_id });
+        console.log('Record deleted successfully');
+        res.redirect('/product/product_list');
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+}
+
 
 // from axios calling
 const getCategory = async (req, res) => {
@@ -652,7 +720,7 @@ const cart = async (req, res) => {
         let product = await Product.findById(product_id);
         console.log(product);
 
-        
+
         res.render('product/cart.ejs', { parent, product, locals: { session: req.session } });
     }
     catch (err) {
@@ -706,6 +774,8 @@ const All = async (req, res) => {
     }
 }
 
+
+
 module.exports = {
-    All, productList, category, postAddProduct, addProduct, manualAddProduct, postCategory, getCategory, allProduct, all_Produc, ProductDetails, social, hotTrends, checkout, portFolio, cart,
+    All, productList, category, postAddProduct, addProduct, manualAddProduct, postCategory, getCategory, allProduct, all_Produc, ProductDetails, social, hotTrends, checkout, portFolio, cart, editProduct, deleteProduct, postEditProduct
 }

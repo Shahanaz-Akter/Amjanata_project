@@ -121,17 +121,18 @@ const productSchema = new mongoose.Schema({
         required: false,
         unique: false
     },
-    stock: {
-        type: String,
-        required: false,
-        unique: false
-    },
+   
     seller_id: {
         type: mongoose.Schema.ObjectId,
         required: false,
         unique: false
     },
 
+   status: {
+        type: String,
+        required: false,
+        unique: false
+    },
     createdAt: {
         type: Date,
         default: Date.now

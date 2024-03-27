@@ -3,7 +3,7 @@ const router = express.Router();
 const upload = require('../multer');
 
 
-const { addSeller, sellerList, addSellerProduct, sellerProductList, sellerRegister, numberVerification, postVerificationCode, sellerAddProduct, productUpload, postProductUpload, sellerPayment, orderList, postNumberVerification, postInformation, postSellerAddProduct, appHome } = require('../controllers/sellerController');
+const { addSeller, sellerList, addSellerProduct, sellerProductList, sellerRegister, numberVerification, postVerificationCode, sellerAddProduct, productUpload, postProductUpload, sellerPayment, orderList, postNumberVerification, postInformation, postSellerAddProduct, appHome, productList } = require('../controllers/sellerController');
 
 // admin seller management 
 router.get('/add_seller', addSeller);
@@ -34,6 +34,8 @@ router.get('/app_home', appHome);
 // router.get('/seller_product_list', sellerProductList); //same as admin view
 router.get('/seller_payment', sellerPayment);
 router.get('/order_list', orderList);
+
+router.get('/product_list', productList);
 
 
 module.exports = router;
